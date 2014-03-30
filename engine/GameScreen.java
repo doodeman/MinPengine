@@ -38,7 +38,7 @@ public class GameScreen implements Screen {
 		
 		// update all objects in GameMap
 		for (GameObject o : map.gameObjects) {
-			o.update();
+			//o.update();
 		}
 		
 		// render all objects

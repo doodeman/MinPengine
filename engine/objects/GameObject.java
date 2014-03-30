@@ -1,6 +1,7 @@
 package engine.objects;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 
 /**
@@ -14,9 +15,14 @@ public abstract class GameObject {
 	Vector2 size; 
 	Sprite sprite; 
 	
+	public GameObject() {
+		
+	}
+	
 	public void update(float delta) {
 		
 	}
+	
 	public void render(SpriteBatch batch) {
 		sprite.draw(batch);
 	}
