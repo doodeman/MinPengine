@@ -3,7 +3,7 @@
 	EntityType: character,
 	Gravity: 1,
 	Collidable: true,
-	onCollide: {default: stop, character: destroyOther, projectile: destroy},
+	onCollide: {default: reverseDirection, player: destroyOther, projectile: destroy},
 	size: {0.8,0.8}
 	moveSpeed: 1,
 	onFutureFall: {default: reverseDirection},
