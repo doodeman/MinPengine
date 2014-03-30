@@ -44,7 +44,7 @@ public class GameScreen implements Screen {
 		// render all objects
 		batch.begin();
 		for (GameObject o : map.gameObjects) {
-			o.render();
+			o.render(batch);
 		}
 		batch.end();
 	}

@@ -14,11 +14,11 @@ public abstract class GameObject {
 	Vector2 size; 
 	Sprite sprite; 
 	
-	public void update() {
+	public void update(float delta) {
 		
 	}
-	public void render() {
-		
+	public void render(SpriteBatch batch) {
+		sprite.draw(batch);
 	}
 	public abstract void onCollide(GameObject that);  
 	
