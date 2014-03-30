@@ -8,28 +8,25 @@ import com.badlogic.gdx.graphics.Texture;
 
 public class AssetManager {
 	
-	private HashMap<String, Texture> texturemap;
+	private static HashMap<String, Texture> texturemap = new HashMap<String, Texture>();
 	
-	public AssetManager() {
-		texturemap = new HashMap<String, Texture>();
-	}
-	
-	public void LoadTextures(List<String> textureLocations) {
+	public static void loadTextures(List<String> textureLocations) {
 		for (String s : textureLocations) {
 			String filename = s.substring(s.lastIndexOf('/') + 1);
 			texturemap.put(filename, new Texture(Gdx.files.internal(s)));
 		}
 	}
 	
-	public Texture getTexture(String textureName) {
+	public static Texture getTexture(String textureName) {
 		return texturemap.get(textureName);
 	}
 	
-	public void DisposeTextures(List<String> textureNames) {
-		for (String s : textureNames) {
-			Texture t = texturemap.get(s);
+	public static void disposeTextures(List<String> textureLocations) {
+		for (String s : textureLocations) {
+			String filename = s.substring(s.lastIndexOf('/') + 1);
+			Texture t = texturemap.get(filename);
 			t.dispose();
-			texturemap.remove(s);
+			texturemap.remove(filename);
 		}
 	}
 }
