@@ -1,5 +1,7 @@
 package engine.objects;
 
-public class GameMap {
+import java.util.List;
 
+public class GameMap {
+	List<EnvironmentObject> environment; 
 }
