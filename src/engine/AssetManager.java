@@ -32,5 +32,4 @@ public class AssetManager {
 			texturemap.remove(s);
 		}
 	}
-
 }
