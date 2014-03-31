@@ -10,6 +10,7 @@ public class GameMap {
 	public List<EnvironmentObject> environmentObjects;
 	public List<MovableObject> movableObjects;
 	public List<String> texturesToLoad;
+	public List<GameObject> gameObjects; 
 	public Player player;
 	
 	public GameMap() {

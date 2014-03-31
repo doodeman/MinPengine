@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import engine.defaultObjects.DefaultPlatformerInputHandler;
+import engine.objects.EnvironmentObject;
 import engine.objects.GameMap;
 import engine.objects.GameObject;
 import engine.objects.MovableObject;
@@ -59,6 +60,7 @@ public class GameScreen implements Screen {
 		camera.update();
 		
 		// render all objects
+	
 		batch.begin();
 		for (EnvironmentObject o : map.environmentObjects) {
 			//o.render(batch);
