@@ -1,7 +1,9 @@
 package engine;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
@@ -10,10 +12,16 @@ import engine.objects.GameObject;
 
 public class GameScreen implements Screen {
 
+	Game game;
 	GameMap map;
 	SpriteBatch batch;
 	OrthographicCamera camera;
 	float width, height;
+	DefaultPlatformerInputHandler inputHandler;
+	
+	public GameScreen(Game g) {
+		game = g;
+	}
 	
 	@Override
 	public void dispose() {
@@ -34,12 +42,18 @@ public class GameScreen implements Screen {
 
 	@Override
 	public void render(float arg0) {
+		Gdx.gl11.glClearColor(1, 1, 1, 1);
+		Gdx.gl11.glClear(GL10.GL_COLOR_BUFFER_BIT);
+		
+		batch.setProjectionMatrix(camera.combined);
+		float delta = Gdx.graphics.getDeltaTime();
 		// handle player input
 		
 		// update all objects in GameMap
-		for (GameObject o : map.gameObjects) {
-			//o.update();
-		}
+		map.update(delta);
+		
+		camera.position.set(map.player.center().x, map.player.center().y, 0);
+		camera.update();
 		
 		// render all objects
 		batch.begin();
@@ -47,6 +61,8 @@ public class GameScreen implements Screen {
 			o.render(batch);
 		}
 		batch.end();
+		
+
 	}
 
 	@Override
@@ -69,6 +85,9 @@ public class GameScreen implements Screen {
 		camera = new OrthographicCamera(width, height);
 		camera.position.set(width / 2, height / 2, 0);
 		
-		// instantiate map
+		inputHandler = new DefaultPlatformerInputHandler(map.player);
+		Gdx.input.setInputProcessor(inputHandler);
+		
+		// parse and instantiate map
 	}
 }

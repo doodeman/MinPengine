@@ -8,8 +8,7 @@ public class MinPengineGame extends Game {
 	
 	@Override
 	public void create() {
-		screen = new GameScreen(); 
+		screen = new GameScreen(this); 
 		setScreen(screen); 
-	}
-	
+	}	
 }

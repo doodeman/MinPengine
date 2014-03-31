@@ -13,15 +13,14 @@ public abstract class GameObject {
 	public boolean collidable; 
 	Vector2 pos;
 	Vector2 size; 
-	Sprite sprite; 
+	Sprite sprite;
+	final float ppU = 32; // pixels per game world unit. This should be the same as the sprite size.
 	
 	public GameObject() {
 		
 	}
 	
-	public void update(float delta) {
-		
-	}
+	public abstract void update(float delta);
 	
 	public void render(SpriteBatch batch) {
 		sprite.draw(batch);

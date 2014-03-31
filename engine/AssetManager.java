@@ -12,21 +12,27 @@ public class AssetManager {
 	
 	public static void loadTextures(List<String> textureLocations) {
 		for (String s : textureLocations) {
-			String filename = s.substring(s.lastIndexOf('/') + 1);
-			texturemap.put(filename, new Texture(Gdx.files.internal(s)));
+			loadTexture(s);
 		}
 	}
 	
-	public static Texture getTexture(String textureName) {
-		return texturemap.get(textureName);
+	public static void loadTexture(String textureName) {
+		texturemap.put(textureName, new Texture(Gdx.files.internal(textureName)));
 	}
 	
 	public static void disposeTextures(List<String> textureLocations) {
 		for (String s : textureLocations) {
-			String filename = s.substring(s.lastIndexOf('/') + 1);
-			Texture t = texturemap.get(filename);
-			t.dispose();
-			texturemap.remove(filename);
+			disposeTexture(s);
 		}
+	}
+	
+	public static void disposeTexture(String textureName) {
+		Texture t = texturemap.get(textureName);
+		t.dispose();
+		texturemap.remove(textureName);
+	}
+	
+	public static Texture getTexture(String textureName) {
+		return texturemap.get(textureName);
 	}
 }
