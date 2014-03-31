@@ -7,6 +7,12 @@ public abstract class MovableObject extends GameObject {
 	public Vector2 velocity; 
 	boolean facingRight;
 	
+	public MovableObject() {
+		super(); 
+		velocity = new Vector2(0,0); 
+		gravity = 0; 
+		facingRight = true; 
+	}
 	public void update(float delta) {
 		
 	}
