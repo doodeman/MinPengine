@@ -17,7 +17,9 @@ public abstract class GameObject {
 	final float ppU = 32; // pixels per game world unit. This should be the same as the sprite size.
 	
 	public GameObject() {
-		
+		this.pos = new Vector2(1,1); 
+		this.size = new Vector2(1,1); 
+		sprite = new Sprite(); 
 	}
 	
 	public abstract void update(float delta);
