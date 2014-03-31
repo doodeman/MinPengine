@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+import engine.defaultObjects.DefaultPlatformerInputHandler;
 import engine.objects.GameMap;
 import engine.objects.GameObject;
 
@@ -21,6 +22,7 @@ public class GameScreen implements Screen {
 	
 	public GameScreen(Game g) {
 		game = g;
+		map = new GameMap(); 
 	}
 	
 	@Override

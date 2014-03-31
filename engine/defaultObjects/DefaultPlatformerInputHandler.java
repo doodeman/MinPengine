@@ -1,7 +1,8 @@
-package engine;
+package engine.defaultObjects;
 
 import com.badlogic.gdx.Input.Keys;
 
+import engine.InputHandler;
 import engine.objects.Player;
 
 
