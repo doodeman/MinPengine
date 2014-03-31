@@ -16,6 +16,8 @@ public class GameMap {
 	public GameMap() {
 		texturesToLoad = new ArrayList<String>(); 
 		gameObjects = new ArrayList<GameObject>(); 
+		movableObjects = new ArrayList<MovableObject>();
+		environmentObjects = new ArrayList<EnvironmentObject>();
 		player = new DefaultPlayer(); 
 		AssetManager.loadTextures(texturesToLoad);
 	}
