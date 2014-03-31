@@ -2,18 +2,19 @@ package engine;
 
 import com.badlogic.gdx.Game;
 
+import engine.objects.GameMap;
+
 public class MinPengineGame extends Game {
-	public String gameName;
-	//public list maps
-	//public int fcurrentmap
+	public MapLoader loader;
 	GameScreen screen; 
 	public MinPengineGame(String gameName){
-		this.gameName = gameName;
+		this.loader = new MapLoader(gameName);
 	}
 	
 	@Override
 	public void create() {
-		screen = new GameScreen(this); 
+		GameMap map = loader.LoadMap(0);
+		screen = new GameScreen(this, map); 
 		setScreen(screen); 
 	}	
 }
