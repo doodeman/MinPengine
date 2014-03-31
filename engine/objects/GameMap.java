@@ -5,7 +5,8 @@ import java.util.List;
 import engine.AssetManager;
 
 public class GameMap {
-	public List<GameObject> gameObjects;
+	public List<EnvironmentObject> environmentObjects;
+	public List<MovableObject> movableObjects;
 	public List<String> texturesToLoad;
 	public Player player;
 	
@@ -14,7 +15,7 @@ public class GameMap {
 	}
 	
 	public void update(float delta) {
-		for (GameObject o : gameObjects) {
+		for (GameObject o : movableObjects) {
 			o.update(delta);
 		}
 		player.update(delta);

@@ -7,8 +7,10 @@ import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+import engine.objects.EnvironmentObject;
 import engine.objects.GameMap;
 import engine.objects.GameObject;
+import engine.objects.MovableObject;
 
 public class GameScreen implements Screen {
 
@@ -57,7 +59,10 @@ public class GameScreen implements Screen {
 		
 		// render all objects
 		batch.begin();
-		for (GameObject o : map.gameObjects) {
+		for (EnvironmentObject o : map.environmentObjects) {
+			//o.render(batch);
+		}
+		for (MovableObject o : map.movableObjects){
 			o.render(batch);
 		}
 		batch.end();
