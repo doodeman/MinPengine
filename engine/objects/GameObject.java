@@ -13,10 +13,12 @@ public abstract class GameObject {
 	public boolean collidable; 
 	Vector2 pos;
 	Vector2 size; 
-	Sprite sprite;
+	public Sprite sprite;
+	public String spritePath; 
 	final float ppU = 32; // pixels per game world unit. This should be the same as the sprite size.
 	
 	public GameObject() {
+		spritePath = "";
 		this.pos = new Vector2(1,1); 
 		this.size = new Vector2(1,1); 
 		sprite = new Sprite(); 

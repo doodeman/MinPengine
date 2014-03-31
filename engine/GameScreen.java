@@ -64,15 +64,7 @@ public class GameScreen implements Screen {
 		camera.update();
 		
 		// render all objects
-		batch.begin();
-		for (EnvironmentObject o : map.environmentObjects) {
-			//o.render(batch);
-		}
-		for (MovableObject o : map.movableObjects){
-			o.render(batch);
-		}
-		batch.end();
-		
+		map.renderObjects(batch);
 
 	}
 

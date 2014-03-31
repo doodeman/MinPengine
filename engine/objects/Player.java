@@ -9,7 +9,4 @@ public abstract class Player extends MovableObject {
 		super(); 
 	}
 	
-	public void udpate(float delta) {
-		
-	}
 }
