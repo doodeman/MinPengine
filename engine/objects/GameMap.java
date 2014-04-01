@@ -1,9 +1,16 @@
 package engine.objects;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import engine.defaultObjects.DefaultPlayer;
 import engine.AssetManager;
@@ -16,6 +23,7 @@ public class GameMap implements Comparable<GameMap>{
 	public Player player;
 	public int mapNumber;
 	public String mapName;
+	public int gravity;
 	
 	//Hoping this constructer will never get called.
 	public GameMap() {
@@ -25,25 +33,20 @@ public class GameMap implements Comparable<GameMap>{
 		environmentObjects = new ArrayList<EnvironmentObject>();
 		player = new DefaultPlayer(); 
 		gameObjects.add(player);
-		AssetManager.loadTexturesForObjects(gameObjects);
+		//AssetManager.loadTexturesForObjects(gameObjects);
 	}
 	
-	public GameMap(String mapName) {
+	public GameMap(String mapName) throws IOException {
 		this.mapName = mapName;
 		texturesToLoad = new ArrayList<String>(); 
 		gameObjects = new ArrayList<GameObject>(); 
 		movableObjects = new ArrayList<MovableObject>();
 		environmentObjects = new ArrayList<EnvironmentObject>();
 		player = new DefaultPlayer(); 
+		GsonMap gsonMap = Helpers.getGsonMap(mapName);
+		gravity = gsonMap.gravity;		//these default to zero
+		mapNumber = gsonMap.mapNumer;
 	}
-	
-	public void setNumber(int number){
-		this.mapNumber = number;
-	}
-	
-	public int getNumber(){
-		return mapNumber;
-	}	
 	
 	public void update(float delta) {
 		for (GameObject o : movableObjects) {

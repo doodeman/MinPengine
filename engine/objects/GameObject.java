@@ -20,7 +20,7 @@ public abstract class GameObject {
 	protected ArrayList<CollisionEvent> collisionEvents;
 	protected ArrayList<InputEvent> inputEvents;
 	final float ppU = 32; // pixels per game world unit. This should be the same as the sprite size.
-
+	
 	public String spritePath;
 
 	//public event onCollide()... myndi returna eventi. Eða hugsanlega hafa tvö array hérna, collision og 

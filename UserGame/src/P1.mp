@@ -1,11 +1,12 @@
 {
-	EntityName: P1,
-	EntityType: player,
-	Gravity: 1,
-	Collidable: true,
-	onCollide: {default: stop, character: destroy},
-	Size: {0.8,0.8}
-	moveSpeed: 1,
-	Graphics: 'assets/p1.png',
-	Controls: {UpArrow: jump, DownArrow: crouch, LeftArrow: moveLeft, RightArrow: moveRight}
+	"entityName": "P1",
+	"entityType": "player",
+	"gravity": "1",
+	"collidable": "true",
+	"onCollide": {"default": "stop", "character": "destroy"},
+	"sizeX": "0.8",
+	"sizeY": "0.8"
+	"moveSpeed": "1",
+	"graphics": "assets/p1.png",
+	"controls": {"UpArrow": "jump","DownArrow": "crouch", "LeftArrow": "moveLeft", "RightArrow": "moveRight"}
 } 

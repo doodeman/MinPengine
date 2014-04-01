@@ -1,5 +1,7 @@
 package engine;
 
+import java.io.IOException;
+
 import com.badlogic.gdx.Game;
 
 import engine.objects.GameMap;
@@ -7,7 +9,7 @@ import engine.objects.GameMap;
 public class MinPengineGame extends Game {
 	public MapLoader loader;
 	GameScreen screen; 
-	public MinPengineGame(String gameName){
+	public MinPengineGame(String gameName) throws IOException{
 		this.loader = new MapLoader(gameName);
 	}
 	
