@@ -53,7 +53,7 @@ public class GameScreen implements Screen {
 		// update all objects in GameMap
 		map.update(delta);
 		
-		camera.position.set(map.player.center().x, map.player.center().y, 0);
+		camera.position.set(map.player.center().x * map.player.ppU, map.player.center().y * map.player.ppU, 0);
 		camera.update();
 		
 		// render all objects

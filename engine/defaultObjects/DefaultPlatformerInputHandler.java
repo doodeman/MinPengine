@@ -23,15 +23,15 @@ public class DefaultPlatformerInputHandler extends InputHandler {
 	@Override
 	public boolean keyDown(int keyCode) {
 		if (keyCode == Keys.LEFT) {
-			player.velocity.x = -100; 
+			player.velocity.x = -10; 
 			return true; 
 		}
 		if (keyCode == Keys.RIGHT) {
-			player.velocity.x = 100; 
+			player.velocity.x = 10; 
 			return true; 
 		}
 		if (keyCode == Keys.SPACE) {
-			player.velocity.y = 100; 
+			player.velocity.y = 10; 
 			return true; 
 		}
 		return false; 
