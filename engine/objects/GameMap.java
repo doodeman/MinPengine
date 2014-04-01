@@ -7,8 +7,10 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
+
 import engine.AssetManager;
 
 public class GameMap implements Comparable<GameMap>{
@@ -19,6 +21,7 @@ public class GameMap implements Comparable<GameMap>{
 	public String mapName;
 	public double gravity;
 	private String gameName;
+	public Color color;
 	
 
 	public GameMap(String mapName, String gameName) throws IOException {
@@ -29,6 +32,7 @@ public class GameMap implements Comparable<GameMap>{
 		GsonMap gsonMap = Helpers.getGsonMap(mapName);
 		gravity = gsonMap.gravity;		//these defaul to zero
 		mapNumber = gsonMap.mapNumer;
+		color = new Color(gsonMap.bgcolorR, gsonMap.bgcolorG, gsonMap.bgcolorB, gsonMap.bgcolorA);
 	}
 	
 	public void update(float delta) {
