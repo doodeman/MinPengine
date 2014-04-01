@@ -17,18 +17,20 @@ public class MapLoader {
 		this.gameName = gameName; 
 		final File folder = new File(this.gameName + "/src");
 		
-		for(final File file: folder.listFiles()){
-			if(Helpers.getExtension(file.getName()).equals("map")){ //this doesn't work, find a way to find .map endings.
-				String newFile = file.getName().substring(0, file.getName().length()-3) + "mp"; //take in the name of the file, minus the ending
-				String mapConfig = this.gameName + "/src/" + newFile;
-				GameMap newMap = parseMap(mapConfig);
-				maps.add(newMap);
+		if (folder.listFiles() != null) {
+			for(final File file: folder.listFiles()){
+				if(Helpers.getExtension(file.getName()).equals("map")){ //this doesn't work, find a way to find .map endings.
+					String newFile = file.getName().substring(0, file.getName().length()-3) + "mp"; //take in the name of the file, minus the ending
+					String mapConfig = this.gameName + "/src/" + newFile;
+					GameMap newMap = parseMap(mapConfig);
+					maps.add(newMap);
+				}
 			}
 		}
 		Collections.sort(maps);
 	}
 
-	/**
+	/**   
 	 * This method parses creates a GameMap, loads in the config options in the corresponding mapConfig file, and
 	 * passes on the information in that file to the map. It then returns the map.
 	 * @param mapConfig
@@ -44,9 +46,16 @@ public class MapLoader {
 	 * Loads a map with a particular number, loads all assets, and returns it.
 	 * @param number - The number of the beast.
 	 * @throws IOException 
+	 * @throws MinPengineException 
 	 */
-	public GameMap LoadMap(int number) throws IOException{
-		GameMap currentMap = maps.get(number);
+	public GameMap LoadMap(int number) throws IOException, MinPengineException{
+		GameMap currentMap; 
+		try {
+			currentMap = maps.get(number);
+		} 
+		catch (IndexOutOfBoundsException e) {
+			throw (new MinPengineException("Failed to load map " + number + "!"));
+		}
 		if(currentMap == null){
 			return null;
 		}

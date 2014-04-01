@@ -12,8 +12,6 @@ import com.badlogic.gdx.math.Vector2;
 import engine.AssetManager;
 
 public class GameMap implements Comparable<GameMap>{
-	public List<EnvironmentObject> environmentObjects;
-	public List<MovableObject> movableObjects;
 	public List<String> texturesToLoad;
 	public List<GameObject> gameObjects; 
 	public Player player;
@@ -28,15 +26,13 @@ public class GameMap implements Comparable<GameMap>{
 		this.gameName = gameName;
 		texturesToLoad = new ArrayList<String>(); 
 		gameObjects = new ArrayList<GameObject>(); 
-		movableObjects = new ArrayList<MovableObject>();
-		environmentObjects = new ArrayList<EnvironmentObject>();
 		GsonMap gsonMap = Helpers.getGsonMap(mapName);
-		gravity = gsonMap.gravity;		//these default to zero
+		gravity = gsonMap.gravity;		//these defaul to zero
 		mapNumber = gsonMap.mapNumer;
 	}
 	
 	public void update(float delta) {
-		for (GameObject o : movableObjects) {
+		for (GameObject o : gameObjects) {
 			o.update(delta);
 		}
 		player.update(delta);
@@ -69,29 +65,30 @@ public class GameMap implements Comparable<GameMap>{
 					loaded.add(word);
 				}	
 				else{
-					for(EnvironmentObject e : environmentObjects){
+					for(GameObject e : gameObjects){
 						if(e.getEntityName() == word){
-							e.AddLocation(location);
+							EnvironmentObject env = (EnvironmentObject) e; 
+							env.AddLocation(location);
 							break;
 						}
 					}
 				}
 			}
 		}
-		AssetManager.loadTextures(texturesToLoad);
+		AssetManager.loadTexturesForObjects(gameObjects);
 	}
 	private void loadObject(String word, Vector2 location) throws IOException {
 
 		GsonMap gsonMap = Helpers.getGsonMap(this.gameName + "/src/" + word + ".mp");
 		String type = gsonMap.entityType;
 		if(type.equals("character")){
-			movableObjects.add(new Character(gsonMap, location));
+			gameObjects.add(new Character(gsonMap, location));
 		}
 		else if(type.equals("player")){
 			player = new Player(gsonMap, location);
 		}
 		else if(type.equals("environment")){
-			environmentObjects.add(new EnvironmentObject(gsonMap, location));
+			gameObjects.add(new EnvironmentObject(gsonMap, location));
 		}
 		else if(type.equals("static")){
 			gameObjects.add(new StaticObject(gsonMap, location));

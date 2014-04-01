@@ -22,6 +22,8 @@ public class MinPengineGame extends Game {
 			setScreen(screen); 
 		} catch (IOException e) {
 			e.printStackTrace();
-		}		
+		} catch (MinPengineException e) {
+			e.printStackTrace();
+		}
 	}	
 }
