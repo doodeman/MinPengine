@@ -5,9 +5,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Map.Entry;
 
 import com.badlogic.gdx.graphics.Color;
@@ -33,13 +31,13 @@ public class GameMap implements Comparable<GameMap>{
 		texturesToLoad = new ArrayList<String>(); 
 		gameObjects = new ArrayList<GameObject>(); 
 		GsonMap gsonMap = Helpers.getGsonMap(mapName);
-		gravity = gsonMap.gravity;		//these defaul to zero
+		gravity = gsonMap.gravity;		//these default to zero
 		mapNumber = gsonMap.mapNumer;
 		color = new Color(gsonMap.bgcolorR, gsonMap.bgcolorG, gsonMap.bgcolorB, gsonMap.bgcolorA);
 	}
 	
 	public void update(float delta) {
-		checkForCollisions(); 
+		checkForCollisions();
 		for (GameObject o : gameObjects) {
 			o.update(delta);
 		}
@@ -84,17 +82,17 @@ public class GameMap implements Comparable<GameMap>{
 		GsonMap gsonMap = Helpers.getGsonMap(this.gameName + "/src/" + word + ".mp");
 		String type = gsonMap.entityType;
 		if(type.equals("character")){
-			gameObjects.add(new Character(gsonMap, location, this.gameName));
+			gameObjects.add(new Character(gsonMap, location, this.gameName, this));
 		}
 		else if(type.equals("player")){
-			player = new Player(gsonMap, location, this.gameName);
+			player = new Player(gsonMap, location, this.gameName, this);
 			gameObjects.add(player);
 		}
 		else if(type.equals("environment")){
-			gameObjects.add(new EnvironmentObject(gsonMap, location, this.gameName));
+			gameObjects.add(new EnvironmentObject(gsonMap, location, this.gameName, this));
 		}
 		else if(type.equals("static")){
-			gameObjects.add(new StaticObject(gsonMap, location, this.gameName));
+			gameObjects.add(new StaticObject(gsonMap, location, this.gameName, this));
 		}
 		else{
 			System.out.println(type + " is not a recognized object type");
@@ -141,7 +139,7 @@ public class GameMap implements Comparable<GameMap>{
 			}
 			else if(entry.getKey().equals("default")){
 				defAction = entry.getValue();
-			}			
+			}
 		}
 		if(!resolved && defAction != null){
 			defAction.resolve(g);
@@ -156,5 +154,13 @@ public class GameMap implements Comparable<GameMap>{
 			}
 		}
 		return retList;
+	}
+
+	/**
+	 * This happens when the map completes... if it wins or something.
+	 */
+	public void completeMap() {
+		// TODO Auto-generated method stub
+		
 	}
 }

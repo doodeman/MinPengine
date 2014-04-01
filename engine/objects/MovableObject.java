@@ -13,8 +13,8 @@ public abstract class MovableObject extends GameObject {
 	protected String filename;
 	protected HashMap<String, InputEvent> inputEvents;
 	
-	public MovableObject(GsonMap input, Vector2 location, String gameName) {
-		super(input, location, gameName); 
+	public MovableObject(GsonMap input, Vector2 location, String gameName, GameMap map) {
+		super(input, location, gameName, map); 
 		velocity = new Vector2(0,0); 
 		gravity = input.gravity; 
 		moveSpeed = input.moveSpeed;
@@ -32,9 +32,27 @@ public abstract class MovableObject extends GameObject {
 		this.pos.add(this.velocity.cpy().scl(delta));
 		this.sprite.setPosition(this.pos.x * this.ppU, this.pos.y * this.ppU);
 	}
-	@Override
-	public void onCollide(GameObject that) {
-		// TODO Auto-generated method stub
-		
+
+	/**
+	 * This would cause this entity to stop. We will probably have to calculate some way 
+	 * to make this entity move backwards the way it came away from what it crashed into, 
+	 * so that we can't walk into the other entity indefinetly.
+	 * This method uses the general method stop from the normal event class. Implement that.
+	 */
+	public void stop(){
+		//TODO: implement
+	}
+	/**
+	 * Reverses the direction of this object.
+	 */
+	public void reverseDirection(){
+		this.facingRight = !this.facingRight;
+	}
+	
+	/**
+	 * Makes this object jump. Heel!
+	 */
+	public void jump(){
+		//TODO: implement
 	}
 }

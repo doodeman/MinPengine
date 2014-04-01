@@ -4,8 +4,8 @@ import com.badlogic.gdx.math.Vector2;
 
 public class StaticObject extends GameObject {
 
-	public StaticObject(GsonMap input, Vector2 location, String gameName) {
-		super(input, location, gameName);
+	public StaticObject(GsonMap input, Vector2 location, String gameName, GameMap map) {
+		super(input, location, gameName, map);
 		// TODO Auto-generated constructor stub
 	}
 
@@ -14,11 +14,4 @@ public class StaticObject extends GameObject {
 		// TODO Auto-generated method stub
 
 	}
-
-	@Override
-	public void onCollide(GameObject that) {
-		// TODO Auto-generated method stub
-
-	}
-
 }

@@ -28,10 +28,13 @@ public abstract class GameObject {
 
 	private String entityType;
 
+	private GameMap map;
+
 	//public event onCollide()... myndi returna eventi. Eða hugsanlega hafa tvö array hérna, collision og 
 	//click event. Bæta við fleirum ef það ætti við. Í hverju updatei þyrfti að fara í gegnum þessi event, og 
 	//athuga hvort þau triggerast.
-	public GameObject(GsonMap input, Vector2 location, String gameName) {
+	public GameObject(GsonMap input, Vector2 location, String gameName, GameMap map) {
+		this.map = map;
 		this.entityName = input.entityName;
 		spritePath = "";
 		this.pos = location; 
@@ -49,6 +52,10 @@ public abstract class GameObject {
 		this.spritePath = gameName + "/" + input.graphics;
 		this.collidable = input.collidable;
 		this.entityType = input.entityType;
+	}
+	
+	public GameMap getMap(){
+		return this.map;
 	}
 	public String getEntityType(){
 		return this.entityType;
@@ -68,9 +75,6 @@ public abstract class GameObject {
 	public HashMap<String, CollisionEvent> getCollisionEvents(){
 		return collisionEvents;
 	}
-	
-	public abstract void onCollide(GameObject that);  
-	//TODO: OnCollide should call all CollisionEvents.
 	
 	/**
 	 * Returns Side.NONE if not collided. Otherwise returns which of this' sides collided. 
@@ -131,5 +135,34 @@ public abstract class GameObject {
 	}
 	public double rightBorder() {
 		return this.pos.x + this.size.x; 
+	}
+	/**
+	 * This is just here to be here, implemented in MovableObject, this is here so we can call it from collisionEvents,
+	 * But it should not do anything in static or non-movable objects, and thus is empty here.
+	 */
+	public void stop() {
+		// Intentionally empty.
+		
+	}
+	/**
+	 * This function would destroy this object. Kill it essentially. Make it so.
+	 */
+	public void destroy() {
+		// TODO Auto-generated method stub
+		
+	}
+	/**
+	 * This method is implemented in the "movableobject" class, and should not be used here.
+	 */
+	public void reverseDirection() {
+		// TODO Auto-generated method stub
+		
+	}
+	/**
+	 * This method is implemented in the "movableObject" class, and should not be used here.
+	 */
+	public void jump() {
+		// TODO Auto-generated method stub
+		
 	}
 }

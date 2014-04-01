@@ -44,6 +44,7 @@ public class CollisionEvent extends Event{
 	 */
 	public void destroyOther(GameObject other){
 		System.out.println("Destroy other");
+		other.destroy();
 	}
 	
 	/**
@@ -52,6 +53,7 @@ public class CollisionEvent extends Event{
 	 */
 	public void reverseDirection(GameObject other){
 		System.out.println("Reverse Direction");
+		target.reverseDirection();
 	}
 	
 	/**
@@ -66,7 +68,7 @@ public class CollisionEvent extends Event{
 	
 	/**
 	 * This would cause this entity to comlete the map.
-	 * This method uses the general method stop from the normal event class. Implement that.
+	 * Implemented in the Event class
 	 * @param other
 	 */
 	public void completeMap(GameObject other){
@@ -74,10 +76,7 @@ public class CollisionEvent extends Event{
 	}
 	
 	/**
-	 * This would cause this entity to stop. We will probably have to calculate some way 
-	 * to make this entity move backwards the way it came away from what it crashed into, 
-	 * so that we can't walk into the other entity indefinetly.
-	 * This method uses the general method stop from the normal event class. Implement that.
+	 * Causes this entity to stop.
 	 * @param other
 	 */
 	public void stop(GameObject other){

@@ -2,8 +2,7 @@ package engine.objects;
 
 public abstract class Event {
 	protected GameObject target;
-	protected String event;
-	
+	protected String event;	
 	
 	//Pælingin hérna er að búa til event sem er í gameobjectinu. þegar mappið er parsað inn, væru þessi event sett á viðkomandi hluti
 	//og síðan myndu þau keyrast á réttum tímum. Veit ekki alveg hvernig þetta gæti virkað.Work in progress.
@@ -18,12 +17,14 @@ public abstract class Event {
 	 */
 	protected void stop(){
 		System.out.println("Stop");
+		this.target.stop();
 	}
 	/**
 	 * Makes this object jump.
 	 */
 	protected void jump(){
 		System.out.println("jump");
+		this.target.jump();
 	}
 	/**
 	 * Kills this object.
@@ -31,11 +32,13 @@ public abstract class Event {
 	 */
 	protected void destroy(){
 		System.out.println("Destroy this");
+		this.target.destroy();
 	}
 	/**
-	 * Complete the map.
+	 * Complete the map. I have no idea how to implement this to be honest...
 	 */
 	protected void completeMap(){
 		System.out.println("You won this map!");
+		this.target.getMap().completeMap();
 	}
 }
