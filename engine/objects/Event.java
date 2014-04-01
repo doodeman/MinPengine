@@ -13,4 +13,29 @@ public abstract class Event {
 		this.target = target;
 		this.event = event;
 	}
+	/**
+	 * Stop the current object,
+	 */
+	protected void stop(){
+		System.out.println("Stop");
+	}
+	/**
+	 * Makes this object jump.
+	 */
+	protected void jump(){
+		System.out.println("jump");
+	}
+	/**
+	 * Kills this object.
+	 * @param other
+	 */
+	protected void destroy(){
+		System.out.println("Destroy this");
+	}
+	/**
+	 * Complete the map.
+	 */
+	protected void completeMap(){
+		System.out.println("You won this map!");
+	}
 }

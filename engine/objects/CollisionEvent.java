@@ -32,9 +32,10 @@ public class CollisionEvent extends Event{
 
 	/**
 	 * This function would cause an entity to be destroyed.
+	 * this function is implemented in the super class Event, implement it there.
 	 */
 	public void destroy(GameObject other){
-		System.out.println("Destroy this");
+		destroy();
 	}
 	
 	/**
@@ -46,7 +47,7 @@ public class CollisionEvent extends Event{
 	}
 	
 	/**
-	 * This would cause this entity to reverse it's direction.
+	 * This would cause this entity to reverse it's direction. Away from the "other"
 	 * @param other
 	 */
 	public void reverseDirection(GameObject other){
@@ -55,27 +56,31 @@ public class CollisionEvent extends Event{
 	
 	/**
 	 * This would cause this entity to jump... out of fear I presume.
+	 * This method uses the general method stop from the normal event class. Implement that.
 	 * @param other
 	 */
 	public void jump(GameObject other){
 		System.out.println("jump");
+		jump();
 	}
 	
 	/**
 	 * This would cause this entity to comlete the map.
+	 * This method uses the general method stop from the normal event class. Implement that.
 	 * @param other
 	 */
 	public void completeMap(GameObject other){
-		System.out.println("You won this map!");
+		completeMap();
 	}
 	
 	/**
 	 * This would cause this entity to stop. We will probably have to calculate some way 
 	 * to make this entity move backwards the way it came away from what it crashed into, 
 	 * so that we can't walk into the other entity indefinetly.
+	 * This method uses the general method stop from the normal event class. Implement that.
 	 * @param other
 	 */
 	public void stop(GameObject other){
-		System.out.println("Stop");
+		stop();
 	}
 }
