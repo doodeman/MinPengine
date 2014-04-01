@@ -43,7 +43,7 @@ public class GameScreen implements Screen {
 
 	@Override
 	public void render(float arg0) {
-		Gdx.gl11.glClearColor(1, 1, 1, 1);
+		Gdx.gl11.glClearColor(map.color.r, map.color.g, map.color.b, map.color.a);
 		Gdx.gl11.glClear(GL10.GL_COLOR_BUFFER_BIT);
 		
 		batch.setProjectionMatrix(camera.combined);

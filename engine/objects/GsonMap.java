@@ -16,4 +16,8 @@ public class GsonMap {
 	public int mapNumer;
 	public String onFutureFall;
 	public boolean facingRight;
+	public float bgcolorR;
+	public float bgcolorG;
+	public float bgcolorB;
+	public float bgcolorA;
 }
