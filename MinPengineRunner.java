@@ -11,8 +11,8 @@ public class MinPengineRunner {
 		LwjglApplicationConfiguration cfg = new LwjglApplicationConfiguration();
 		cfg.fullscreen = false;
 		cfg.useGL20 = false;
-		cfg.height = 720;
-		cfg.width = 1280;
+		cfg.height = 600;
+		cfg.width = 800;
 		cfg.resizable = false;
 		cfg.title = "MinPengine Game";
 		new LwjglApplication(new MinPengineGame(arg[0]), cfg);

@@ -69,19 +69,19 @@ public abstract class GameObject {
 	 */
 	public Side hasCollided(GameObject that) {
 		//Rectangle 1′s bottom edge is higher than Rectangle 2′s top edge.
-		if ((this.pos.y) > (that.pos.y + that.size.y)) {
+		if ((this.pos.y) >= (that.pos.y + that.size.y)) {
 			return Side.NONE;
 		}
 		//Rectangle 1′s top edge is lower than Rectangle 2′s bottom edge.
-		if ((this.pos.y + this.size.y)< that.pos.y) {
+		if ((this.pos.y + this.size.y)<= that.pos.y) {
 			return Side.NONE; 
 		}
 		//Rectangle 1′s left edge is to the right of Rectangle 2′s right edge.
-		if ((this.pos.x) > (that.pos.x + that.size.x) ) {
+		if ((this.pos.x) >= (that.pos.x + that.size.x) ) {
 			return Side.NONE; 
 		}
 		//Rectangle 1′s right edge is to the left of Rectangle 2′s left edge.
-		if ((this.pos.x + this.size.x) < that.pos.x ) {
+		if ((this.pos.x + this.size.x) <= that.pos.x ) {
 			return Side.NONE; 
 		}
 		
