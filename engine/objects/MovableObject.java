@@ -1,25 +1,39 @@
 package engine.objects;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import com.badlogic.gdx.math.Vector2;
 
 public abstract class MovableObject extends GameObject {
 	public double gravity;
 	public Vector2 velocity; 
 	boolean facingRight;
+	public double moveSpeed;
 	protected String filename;
+	protected HashMap<String, InputEvent> inputEvents;
 	
-	public MovableObject() {
-		super(); 
+	public MovableObject(GsonMap input, Vector2 location) {
+		super(input, location); 
 		velocity = new Vector2(0,0); 
-		gravity = 0; 
-		facingRight = true; 
-	}
-	public MovableObject(String filename){
-		this.filename = filename;
-		//TODO: implement file parsing.
-		//event system thingy should be added here.
+		gravity = input.gravity; 
+		moveSpeed = input.moveSpeed;
+		facingRight = input.facingRight; 
+		inputEvents = new HashMap<String, InputEvent>();
+		if(input.controls != null){
+			for (Map.Entry<String, String> entry : input.controls.entrySet()) {
+			    String key = entry.getKey();
+			    String value = entry.getValue();
+			    inputEvents.put(key, new InputEvent(this, value));
+			}
+		}
 	}
 	public void update(float delta) {
+		
+	}
+	@Override
+	public void onCollide(GameObject that) {
+		// TODO Auto-generated method stub
 		
 	}
 }

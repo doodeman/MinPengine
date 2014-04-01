@@ -5,7 +5,6 @@
 	"collidable": "true",
 	"onCollide": {"default": "destroyOther"},
 	"sizeX": "1.0",
-	"sizeY": "1.0"
-	"moveSpeed": "0",
+	"sizeY": "1.0",
 	"graphics": "assets/g3.png"
 } 

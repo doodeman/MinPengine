@@ -1,6 +1,8 @@
 package engine.objects;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -17,28 +19,46 @@ public abstract class GameObject {
 	Vector2 pos;
 	Vector2 size; 
 	public Sprite sprite;
-	protected ArrayList<CollisionEvent> collisionEvents;
-	protected ArrayList<InputEvent> inputEvents;
+
+	protected HashMap<String, CollisionEvent> collisionEvents;
 	final float ppU = 32; // pixels per game world unit. This should be the same as the sprite size.
 	
 	public String spritePath;
 
+	private String entityName;
+
+	private String spriteFile;	//not used, but should be to get the sprite.
+
+
 	//public event onCollide()... myndi returna eventi. Eða hugsanlega hafa tvö array hérna, collision og 
 	//click event. Bæta við fleirum ef það ætti við. Í hverju updatei þyrfti að fara í gegnum þessi event, og 
 	//athuga hvort þau triggerast.
-	public GameObject() {
+	public GameObject(GsonMap input, Vector2 location) {
+		this.entityName = input.entityName;
 		spritePath = "";
-		this.pos = new Vector2(1,1); 
+		this.pos = location; 
 		this.size = new Vector2(1,1); 
 		sprite = new Sprite(); 
-		collisionEvents = new ArrayList<CollisionEvent>();
-		inputEvents = new ArrayList<InputEvent>();
+		collisionEvents = new HashMap<String,CollisionEvent>();
+		if(input.onCollide != null){
+			for (Map.Entry<String, String> entry : input.onCollide.entrySet()) {
+			    String key = entry.getKey();
+			    String value = entry.getValue();
+			    collisionEvents.put(key, new CollisionEvent(this, value));
+			}
+		}
+		this.size = new Vector2(input.sizeX, input.sizeY);
+		this.spriteFile = input.graphics;
+		this.collidable = input.collidable;
 	}
 	
 	public abstract void update(float delta);
 	
 	public void render(SpriteBatch batch) {
 		sprite.draw(batch);
+	}
+	public String getEntityName(){
+		return entityName;
 	}
 	public abstract void onCollide(GameObject that);  
 	//TODO: OnCollide should call all CollisionEvents.
@@ -102,11 +122,5 @@ public abstract class GameObject {
 	}
 	public double rightBorder() {
 		return this.pos.x + this.size.x; 
-	}
-	public void addInputEvent(InputEvent event){
-		inputEvents.add(event);
-	}
-	public void addCollisionEvent(CollisionEvent event){
-		collisionEvents.add(event);
 	}
 }

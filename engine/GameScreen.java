@@ -8,9 +8,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import engine.defaultObjects.DefaultPlatformerInputHandler;
-import engine.objects.EnvironmentObject;
 import engine.objects.GameMap;
-import engine.objects.MovableObject;
 
 public class GameScreen implements Screen {
 
@@ -23,12 +21,7 @@ public class GameScreen implements Screen {
 	
 	public GameScreen(Game g, GameMap map) {
 		game = g;
-		if (map == null) {
-			this.map = new GameMap(); 
-		}
-		else {
-			this.map = map; 
-		}
+		this.map = map; 
 	}
 	
 	@Override

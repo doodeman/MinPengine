@@ -13,10 +13,15 @@ public class MinPengineGame extends Game {
 		this.loader = new MapLoader(gameName);
 	}
 	
+	
 	@Override
 	public void create() {
-		GameMap map = loader.LoadMap(0);
-		//screen = new GameScreen(this, map); 
-		//setScreen(screen); 
+		try {
+			GameMap map = loader.LoadMap(0);
+			screen = new GameScreen(this, map); 
+			setScreen(screen); 
+		} catch (IOException e) {
+			e.printStackTrace();
+		}		
 	}	
 }

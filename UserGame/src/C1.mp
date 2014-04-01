@@ -8,5 +8,6 @@
 	"sizeY": "0.8",
 	"moveSpeed": "1",
 	"onFutureFall": "reverseDirection",
-	"graphics": "assets/c1.png"
+	"graphics": "assets/c1.png",
+	"facingRight" : "true"
 } 

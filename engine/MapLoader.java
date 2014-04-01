@@ -36,15 +36,16 @@ public class MapLoader {
 	 * @throws IOException 
 	 */
 	private GameMap parseMap(String mapName) throws IOException {
-		GameMap newMap = new GameMap(mapName);
+		GameMap newMap = new GameMap(mapName, this.gameName);
 		return newMap;
 	}
 	
 	/**
 	 * Loads a map with a particular number, loads all assets, and returns it.
 	 * @param number - The number of the beast.
+	 * @throws IOException 
 	 */
-	public GameMap LoadMap(int number){
+	public GameMap LoadMap(int number) throws IOException{
 		GameMap currentMap = maps.get(number);
 		if(currentMap == null){
 			return null;

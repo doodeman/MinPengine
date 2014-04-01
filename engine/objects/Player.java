@@ -1,16 +1,13 @@
 package engine.objects;
 
+import com.badlogic.gdx.math.Vector2;
+
 import engine.InputHandler;
 
-public abstract class Player extends MovableObject {
+public class Player extends MovableObject {
 	InputHandler inputHandler;
 	
-	public Player() {
-		super(); 
+	public Player(GsonMap input, Vector2 location) {
+		super(input, location); 
 	}
-	public Player(String filename){
-		this.filename = filename;
-		//TODO: Parse the information from the file.
-	}
-	
 }
