@@ -32,7 +32,7 @@ public class AssetManager {
 				}
 			}
 			o.sprite = new Sprite(getTexture(o.spritePath));
-			o.sprite.setPosition(0, 0);
+			o.sprite.setPosition(o.pos.x * o.ppU, o.pos.y * o.ppU);
 		}
 	}
 	

@@ -66,14 +66,17 @@ public class GameMap implements Comparable<GameMap>{
 				}	
 				else{
 					for(GameObject e : gameObjects){
-						if(e.getEntityName() == word){
+						if(e.getEntityName().equals(word)){
 							EnvironmentObject env = (EnvironmentObject) e; 
 							env.AddLocation(location);
 							break;
 						}
 					}
 				}
+				x++;
 			}
+			x = 0; 
+			y++;
 		}
 		AssetManager.loadTexturesForObjects(gameObjects);
 	}

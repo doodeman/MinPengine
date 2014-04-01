@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 
 public class EnvironmentObject extends GameObject{
@@ -27,6 +28,12 @@ public class EnvironmentObject extends GameObject{
 	@Override
 	public void onCollide(GameObject that) {
 		// TODO Auto-generated method stub
-		
 	}	
+	@Override
+	public void render(SpriteBatch batch) {
+		for (Vector2 location : locations) {
+			sprite.setPosition(location.x * this.ppU, location.y * this.ppU);
+			sprite.draw(batch);
+		}
+	}
 }

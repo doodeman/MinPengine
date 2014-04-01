@@ -1,6 +1,5 @@
 package engine.objects;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,12 +15,12 @@ import com.badlogic.gdx.math.Vector2;
 public abstract class GameObject {
 	public boolean collidable; 
 
-	Vector2 pos;
+	public Vector2 pos;
 	Vector2 size; 
 	public Sprite sprite;
 
 	protected HashMap<String, CollisionEvent> collisionEvents;
-	final float ppU = 32; // pixels per game world unit. This should be the same as the sprite size.
+	public final float ppU = 64; // pixels per game world unit. This should be the same as the sprite size.
 	
 	public String spritePath;
 
@@ -52,11 +51,14 @@ public abstract class GameObject {
 		this.collidable = input.collidable;
 	}
 	
-	public abstract void update(float delta);
+	public void update(float delta) {
+		
+	}
 	
 	public void render(SpriteBatch batch) {
 		sprite.draw(batch);
 	}
+	
 	public String getEntityName(){
 		return entityName;
 	}
