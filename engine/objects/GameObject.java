@@ -26,9 +26,6 @@ public abstract class GameObject {
 
 	private String entityName;
 
-	private String spriteFile;	//not used, but should be to get the sprite.
-
-
 	//public event onCollide()... myndi returna eventi. Eða hugsanlega hafa tvö array hérna, collision og 
 	//click event. Bæta við fleirum ef það ætti við. Í hverju updatei þyrfti að fara í gegnum þessi event, og 
 	//athuga hvort þau triggerast.
@@ -47,7 +44,7 @@ public abstract class GameObject {
 			}
 		}
 		this.size = new Vector2(input.sizeX, input.sizeY);
-		this.spriteFile = input.graphics;
+		this.spritePath = "UserGame/" + input.graphics;
 		this.collidable = input.collidable;
 	}
 	
