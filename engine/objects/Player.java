@@ -13,7 +13,4 @@ public abstract class Player extends MovableObject {
 		//TODO: Parse the information from the file.
 	}
 	
-	public void udpate(float delta) {
-		
-	}
 }

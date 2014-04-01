@@ -3,6 +3,8 @@ package engine.objects;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+
 import engine.defaultObjects.DefaultPlayer;
 import engine.AssetManager;
 
@@ -22,8 +24,8 @@ public class GameMap implements Comparable<GameMap>{
 		movableObjects = new ArrayList<MovableObject>();
 		environmentObjects = new ArrayList<EnvironmentObject>();
 		player = new DefaultPlayer(); 
-
-		AssetManager.loadTextures(texturesToLoad);
+		gameObjects.add(player);
+		AssetManager.loadTexturesForObjects(gameObjects);
 	}
 	
 	public GameMap(String mapName) {
@@ -66,5 +68,12 @@ public class GameMap implements Comparable<GameMap>{
 		//  bæta locationinu við objectið.
 		// Henda inn textures
 		AssetManager.loadTextures(texturesToLoad);
+	}
+	public void renderObjects(SpriteBatch batch) {
+		batch.begin();
+		for (GameObject o : gameObjects){
+			o.render(batch);
+		}
+		batch.end();
 	}
 }

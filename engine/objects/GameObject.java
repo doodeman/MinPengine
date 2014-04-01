@@ -1,7 +1,5 @@
 package engine.objects;
 
-import java.util.ArrayList;
-
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
@@ -25,6 +23,7 @@ public abstract class GameObject {
 	//click event. Bæta við fleirum ef það ætti við. Í hverju updatei þyrfti að fara í gegnum þessi event, og 
 	//athuga hvort þau triggerast.
 	public GameObject() {
+		spritePath = "";
 		this.pos = new Vector2(1,1); 
 		this.size = new Vector2(1,1); 
 		sprite = new Sprite(); 
