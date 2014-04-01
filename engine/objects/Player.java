@@ -8,6 +8,10 @@ public abstract class Player extends MovableObject {
 	public Player() {
 		super(); 
 	}
+	public Player(String filename){
+		this.filename = filename;
+		//TODO: Parse the information from the file.
+	}
 	
 	public void udpate(float delta) {
 		

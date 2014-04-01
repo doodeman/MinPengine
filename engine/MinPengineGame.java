@@ -14,7 +14,7 @@ public class MinPengineGame extends Game {
 	@Override
 	public void create() {
 		GameMap map = loader.LoadMap(0);
-		screen = new GameScreen(this, map); 
-		setScreen(screen); 
+		//screen = new GameScreen(this, map); 
+		//setScreen(screen); 
 	}	
 }

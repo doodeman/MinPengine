@@ -1,5 +1,7 @@
 package engine.objects;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
@@ -11,15 +13,23 @@ import com.badlogic.gdx.math.Vector2;
  */
 public abstract class GameObject {
 	public boolean collidable; 
+
 	Vector2 pos;
 	Vector2 size; 
 	Sprite sprite;
+	protected ArrayList<CollisionEvent> collisionEvents;
+	protected ArrayList<InputEvent> inputEvents;
 	final float ppU = 32; // pixels per game world unit. This should be the same as the sprite size.
-	
+
+	//public event onCollide()... myndi returna eventi. Eða hugsanlega hafa tvö array hérna, collision og 
+	//click event. Bæta við fleirum ef það ætti við. Í hverju updatei þyrfti að fara í gegnum þessi event, og 
+	//athuga hvort þau triggerast.
 	public GameObject() {
 		this.pos = new Vector2(1,1); 
 		this.size = new Vector2(1,1); 
 		sprite = new Sprite(); 
+		collisionEvents = new ArrayList<CollisionEvent>();
+		inputEvents = new ArrayList<InputEvent>();
 	}
 	
 	public abstract void update(float delta);
@@ -28,6 +38,7 @@ public abstract class GameObject {
 		sprite.draw(batch);
 	}
 	public abstract void onCollide(GameObject that);  
+	//TODO: OnCollide should call all CollisionEvents.
 	
 	/**
 	 * Returns Side.NONE if not collided. Otherwise returns which of this' sides collided. 
@@ -88,5 +99,11 @@ public abstract class GameObject {
 	}
 	public double rightBorder() {
 		return this.pos.x + this.size.x; 
+	}
+	public void addInputEvent(InputEvent event){
+		inputEvents.add(event);
+	}
+	public void addCollisionEvent(CollisionEvent event){
+		collisionEvents.add(event);
 	}
 }
