@@ -1,8 +1,8 @@
 package engine.objects;
 
 public abstract class Event {
-	private GameObject target;
-	private String event;
+	protected GameObject target;
+	protected String event;
 	
 	
 	//Pælingin hérna er að búa til event sem er í gameobjectinu. þegar mappið er parsað inn, væru þessi event sett á viðkomandi hluti

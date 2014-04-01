@@ -5,7 +5,10 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -112,13 +115,39 @@ public class GameMap implements Comparable<GameMap>{
 			for (GameObject g : gameObjects) {
 				if (!m.equals(g)) {
 					if (m.hasCollided(g) != Side.NONE) {
-						System.out.println(m + " collided with " + g);
+						resolveCollision(m, g);
+						resolveCollision(g, m);
 					}
 				}
 			}
 		}
 	}
 	
+	/**
+	 * Here we go through all the events for 'm', if they apply to the type that 'g' has, then 
+	 * we execute that event.
+	 * If the event is the default event, we hold it, and if no other effects apply, we execute that.
+	 * @param m - the item that we are checking
+	 * @param g	- the item that we collided with
+	 */
+	private void resolveCollision(GameObject m, GameObject g) {
+		CollisionEvent defAction = null;
+		boolean resolved = false;
+		for (Entry<String, CollisionEvent> entry : m.getCollisionEvents().entrySet()) {
+			if(entry.getKey().equals(g.getEntityType())){
+				entry.getValue().resolve(g);
+				resolved = true;
+				break;
+			}
+			else if(entry.getKey().equals("default")){
+				defAction = entry.getValue();
+			}			
+		}
+		if(!resolved && defAction != null){
+			defAction.resolve(g);
+		}
+	}
+
 	private List<MovableObject> getMovableObjects() {
 		List<MovableObject> retList = new ArrayList<MovableObject>(); 
 		for (GameObject o : gameObjects) {

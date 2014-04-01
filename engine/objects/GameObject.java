@@ -26,6 +26,8 @@ public abstract class GameObject {
 
 	private String entityName;
 
+	private String entityType;
+
 	//public event onCollide()... myndi returna eventi. Eða hugsanlega hafa tvö array hérna, collision og 
 	//click event. Bæta við fleirum ef það ætti við. Í hverju updatei þyrfti að fara í gegnum þessi event, og 
 	//athuga hvort þau triggerast.
@@ -46,6 +48,10 @@ public abstract class GameObject {
 		this.size = new Vector2(input.sizeX, input.sizeY);
 		this.spritePath = gameName + "/" + input.graphics;
 		this.collidable = input.collidable;
+		this.entityType = input.entityType;
+	}
+	public String getEntityType(){
+		return this.entityType;
 	}
 	
 	public void update(float delta) {
@@ -59,6 +65,10 @@ public abstract class GameObject {
 	public String getEntityName(){
 		return entityName;
 	}
+	public HashMap<String, CollisionEvent> getCollisionEvents(){
+		return collisionEvents;
+	}
+	
 	public abstract void onCollide(GameObject that);  
 	//TODO: OnCollide should call all CollisionEvents.
 	
