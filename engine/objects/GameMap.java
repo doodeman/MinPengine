@@ -53,30 +53,34 @@ public class GameMap implements Comparable<GameMap>{
 		List<String> lines = Files.readAllLines(Paths.get(mapFile), StandardCharsets.UTF_8);
 		System.out.println(mapFile);
 		int x = 0;
-		int y = 0;
+		int y = lines.size();
 		for(String line: lines){	
 			String[] words = line.split("\\s+");		//wow, such regex
 			
 			for(int i = 0; i < words.length; i++){
 				Vector2 location = new Vector2(x, y);
 				String word = words[i];
-				if(!loaded.contains(word)){
-					loadObject(word, location);
-					loaded.add(word);
-				}	
-				else{
-					for(GameObject e : gameObjects){
-						if(e.getEntityName().equals(word)){
-							EnvironmentObject env = (EnvironmentObject) e; 
-							env.AddLocation(location);
-							break;
+				if (word.equals("ee")) {
+				} 
+				else {
+					if(!loaded.contains(word)){
+						loadObject(word, location);
+						loaded.add(word);
+					}	
+					else{
+						for(GameObject e : gameObjects){
+							if(e.getEntityName().equals(word)){
+								EnvironmentObject env = (EnvironmentObject) e; 
+								env.AddLocation(location);
+								break;
+							}
 						}
 					}
 				}
 				x++;
 			}
 			x = 0; 
-			y++;
+			y--;
 		}
 		AssetManager.loadTexturesForObjects(gameObjects);
 	}
@@ -89,6 +93,7 @@ public class GameMap implements Comparable<GameMap>{
 		}
 		else if(type.equals("player")){
 			player = new Player(gsonMap, location, this.gameName);
+			gameObjects.add(player);
 		}
 		else if(type.equals("environment")){
 			gameObjects.add(new EnvironmentObject(gsonMap, location, this.gameName));
