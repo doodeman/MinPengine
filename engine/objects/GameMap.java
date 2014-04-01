@@ -85,16 +85,16 @@ public class GameMap implements Comparable<GameMap>{
 		GsonMap gsonMap = Helpers.getGsonMap(this.gameName + "/src/" + word + ".mp");
 		String type = gsonMap.entityType;
 		if(type.equals("character")){
-			gameObjects.add(new Character(gsonMap, location));
+			gameObjects.add(new Character(gsonMap, location, this.gameName));
 		}
 		else if(type.equals("player")){
-			player = new Player(gsonMap, location);
+			player = new Player(gsonMap, location, this.gameName);
 		}
 		else if(type.equals("environment")){
-			gameObjects.add(new EnvironmentObject(gsonMap, location));
+			gameObjects.add(new EnvironmentObject(gsonMap, location, this.gameName));
 		}
 		else if(type.equals("static")){
-			gameObjects.add(new StaticObject(gsonMap, location));
+			gameObjects.add(new StaticObject(gsonMap, location, this.gameName));
 		}
 		else{
 			System.out.println(type + " is not a recognized object type");

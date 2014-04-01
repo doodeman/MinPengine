@@ -10,8 +10,8 @@ import com.badlogic.gdx.math.Vector2;
 public class EnvironmentObject extends GameObject{
 	private ArrayList<Vector2> locations;	//a list of positions for this environment object.
 	
-	public EnvironmentObject(GsonMap input, Vector2 location){
-		super(input, location);
+	public EnvironmentObject(GsonMap input, Vector2 location, String gameName){
+		super(input, location, gameName);
 		collisionEvents = new HashMap<String,CollisionEvent>();
 		locations = new ArrayList<Vector2>();
 		locations.add(location);

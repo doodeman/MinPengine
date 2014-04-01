@@ -13,8 +13,8 @@ public abstract class MovableObject extends GameObject {
 	protected String filename;
 	protected HashMap<String, InputEvent> inputEvents;
 	
-	public MovableObject(GsonMap input, Vector2 location) {
-		super(input, location); 
+	public MovableObject(GsonMap input, Vector2 location, String gameName) {
+		super(input, location, gameName); 
 		velocity = new Vector2(0,0); 
 		gravity = input.gravity; 
 		moveSpeed = input.moveSpeed;

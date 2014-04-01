@@ -8,8 +8,8 @@ import engine.objects.GameObject;
 
 public class DefaultPlayer extends Player {
 	
-	public DefaultPlayer(GsonMap input, Vector2 location) {
-		super(input, location); 
+	public DefaultPlayer(GsonMap input, Vector2 location, String gameName) {
+		super(input, location, gameName);
 	}
 	public void onCollide(GameObject that) {
 	}

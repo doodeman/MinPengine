@@ -7,7 +7,7 @@ import engine.InputHandler;
 public class Player extends MovableObject {
 	InputHandler inputHandler;
 	
-	public Player(GsonMap input, Vector2 location) {
-		super(input, location); 
+	public Player(GsonMap input, Vector2 location, String gameName) {
+		super(input, location, gameName); 
 	}
 }
