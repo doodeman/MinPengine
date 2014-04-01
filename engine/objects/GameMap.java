@@ -32,6 +32,7 @@ public class GameMap implements Comparable<GameMap>{
 	}
 	
 	public void update(float delta) {
+		checkForCollisions(); 
 		for (GameObject o : gameObjects) {
 			o.update(delta);
 		}
@@ -48,7 +49,6 @@ public class GameMap implements Comparable<GameMap>{
 	 * @throws IOException 
 	 */
 	public void loadAssets() throws IOException {
-		ArrayList<String> loaded = new ArrayList<String>();
 		String mapFile = mapName.substring(0,mapName.length()-2) + "map";
 		List<String> lines = Files.readAllLines(Paths.get(mapFile), StandardCharsets.UTF_8);
 		System.out.println(mapFile);
@@ -63,19 +63,7 @@ public class GameMap implements Comparable<GameMap>{
 				if (word.equals("ee")) {
 				} 
 				else {
-					if(!loaded.contains(word)){
-						loadObject(word, location);
-						loaded.add(word);
-					}	
-					else{
-						for(GameObject e : gameObjects){
-							if(e.getEntityName().equals(word)){
-								EnvironmentObject env = (EnvironmentObject) e; 
-								env.AddLocation(location);
-								break;
-							}
-						}
-					}
+					loadObject(word, location);
 				}
 				x++;
 			}
@@ -112,5 +100,28 @@ public class GameMap implements Comparable<GameMap>{
 			o.render(batch);
 		}
 		batch.end();
+	}
+	
+	public void checkForCollisions() {
+		List<MovableObject> mObjects = getMovableObjects(); 
+		for (MovableObject m : mObjects) {
+			for (GameObject g : gameObjects) {
+				if (!m.equals(g)) {
+					if (m.hasCollided(g) != Side.NONE) {
+						System.out.println(m + " collided with " + g);
+					}
+				}
+			}
+		}
+	}
+	
+	private List<MovableObject> getMovableObjects() {
+		List<MovableObject> retList = new ArrayList<MovableObject>(); 
+		for (GameObject o : gameObjects) {
+			if (MovableObject.class.isAssignableFrom(o.getClass())) {
+				retList.add((MovableObject) o);
+			}
+		}
+		return retList;
 	}
 }
