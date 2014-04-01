@@ -1,5 +1,7 @@
 package engine.objects;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
@@ -14,10 +16,12 @@ public abstract class GameObject {
 
 	Vector2 pos;
 	Vector2 size; 
-	Sprite sprite;
+	public Sprite sprite;
 	protected ArrayList<CollisionEvent> collisionEvents;
 	protected ArrayList<InputEvent> inputEvents;
 	final float ppU = 32; // pixels per game world unit. This should be the same as the sprite size.
+
+	public String spritePath;
 
 	//public event onCollide()... myndi returna eventi. Eða hugsanlega hafa tvö array hérna, collision og 
 	//click event. Bæta við fleirum ef það ætti við. Í hverju updatei þyrfti að fara í gegnum þessi event, og 
