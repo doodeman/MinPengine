@@ -12,16 +12,12 @@ public abstract class MovableObject extends GameObject {
 	public Vector2 velocity; 
 	boolean facingRight;
 	public float moveSpeed;
-	private float lastX;
-	private float lastY;
 	protected String filename;
 	protected HashMap<String, InputEvent> inputEvents;
 	List<Side> collisionSides;
 	
 	public MovableObject(GsonMap input, Vector2 location, String gameName, GameMap map) {
 		super(input, location, gameName, map); 
-		this.lastX = this.pos.x;
-		this.lastY = this.pos.y;
 		velocity = new Vector2(0,0); 
 		gravity = input.gravity; 
 		moveSpeed = input.moveSpeed;
@@ -38,29 +34,65 @@ public abstract class MovableObject extends GameObject {
 	}
 	
 	public void update(float delta) {
-		this.velocity.y -= (float) this.map.gravity * delta;
-		this.pos.add(this.velocity.cpy().scl(delta).sub(new Vector2(map.friction, map.friction)));
-		if(collisionType.equals("stop")){
-			if(collisionSides.contains(Side.RIGHT) || collisionSides.contains( Side.LEFT)){
-				this.pos.x -= this.velocity.x;
+		if(!collisionSides.contains(Side.BOTTOM) || !collisionType.equals("stop")){
+			this.velocity.y -= (float) this.map.gravity * delta;
+		}
+		Vector2 addPos = new Vector2(pos.x,pos.y);
+		addPos.add(this.velocity.cpy().scl(delta).sub(new Vector2(map.friction, map.friction)));
+		if(!collisionType.equals("STOP") || collisionSides.size() == 0){
+			this.pos = addPos;
+		}
+		else{
+			if(!collisionSides.contains(Side.RIGHT) && !collisionSides.contains( Side.LEFT)){
+				this.pos.x = addPos.x;
 			}
-			if(collisionSides.contains(Side.TOP) || collisionSides.contains(Side.BOTTOM)){
-				this.pos.y -= this.velocity.y;
+			if(!collisionSides.contains(Side.TOP) && !collisionSides.contains(Side.BOTTOM)){
+				this.pos.y = addPos.y;
 			}
 		}
 		this.sprite.setPosition(this.pos.x * this.ppU, this.pos.y * this.ppU);
 		this.collisionSides.clear();
 	}
 	
-	
-	/**
-	 * Returns Side.NONE if not collided. Otherwise returns which of this' sides collided. 
-	 * @param that
-	 * @return
-	 */
-	public Side hasCollided(GameObject that, float delta) {
-		//Rectangle 1's bottom edge is higher than Rectangle 2's top edge.
-		Vector2 nextpos = this.pos.cpy().add(this.velocity.cpy().scl(delta));
+	private Side hasCollidedX(GameObject that, float delta){
+		Vector2 nextPos = new Vector2(this.pos.x, this.pos.y);
+		
+		nextPos.add(new Vector2(this.velocity.x,0).scl(delta));
+		Side retSide = null;
+		retSide = outOfRange(that, nextPos);
+		if(retSide == null){
+			Vector2 thisCenter = this.getCenter(); 
+			Vector2 thatCenter = that.getCenter();
+			float deltaX = thisCenter.x - thatCenter.x; 
+			if (deltaX > 0)  {
+				retSide = Side.LEFT; 
+			}
+			else {
+				retSide = Side.RIGHT; 
+			}
+		}
+		return retSide;
+	}
+	private Side hasCollidedY(GameObject that, float delta){
+		Vector2 nextPos = new Vector2(this.pos.x, this.pos.y);
+		nextPos.add(new Vector2(0,this.velocity.y).scl(delta));
+		nextPos.y -= (float) this.map.gravity * delta;
+		Side retSide = null;
+		retSide = outOfRange(that, nextPos);
+		if(retSide == null){
+			Vector2 thisCenter = this.getCenter(); 
+			Vector2 thatCenter = that.getCenter();
+			float deltaY = thisCenter.y - thatCenter.y; 
+			if (deltaY > 0)  {
+				retSide = Side.BOTTOM; 
+			}
+			else {
+				retSide = Side.TOP; 
+			}
+		}
+		return retSide;
+	}
+	private Side outOfRange(GameObject that, Vector2 nextpos) {
 		if ((nextpos.y) >= (that.pos.y + that.size.y)) {
 			return Side.NONE;
 		}
@@ -76,35 +108,30 @@ public abstract class MovableObject extends GameObject {
 		if ((nextpos.x + this.size.x) <= that.pos.x ) {
 			return Side.NONE; 
 		}
-		
-		Vector2 thisCenter = this.getCenter(); 
-		Vector2 thatCenter = that.getCenter();
-		
-		float deltaX = thisCenter.x - thatCenter.x; 
-		float deltaY = thisCenter.y - thatCenter.y;
-		Side retval; 
-		if (Math.abs(deltaX) > Math.abs(deltaY)) {
-			if (deltaX > 0)  {
-				retval = Side.LEFT; 
-				this.collisionSides.add(Side.LEFT);
-			}
-			else {
-				retval = Side.RIGHT; 
-				this.collisionSides.add(Side.RIGHT);
-			}
+		return null;
+	}
+
+	
+	/**
+	 * Returns Side.NONE if not collided. Otherwise returns which of this' sides collided. 
+	 * @param that
+	 * @return
+	 */
+	public Side hasCollided(GameObject that, float delta) {
+		//Rectangle 1's bottom edge is higher than Rectangle 2's top edge.
+		//collisionSides.clear();
+		Side collidedX = hasCollidedX(that, delta);
+		Side collidedY = hasCollidedY(that, delta);
+		Side retVal = Side.NONE;
+		if(collidedX != Side.NONE){
+			retVal = collidedX;
+			collisionSides.add(collidedX);
 		}
-		else {
-			if (deltaY > 0) {
-				retval = Side.BOTTOM;
-				this.collisionSides.add(Side.BOTTOM);
-			}
-			else {
-				retval = Side.TOP;
-				this.collisionSides.add(Side.TOP);
-			}
+		if(collidedY != Side.NONE){
+			retVal = collidedY;
+			collisionSides.add(collidedY);
 		}
-		System.out.println(retval);
-		return retval;
+		return retVal;
 	}
 	
 
@@ -125,6 +152,7 @@ public abstract class MovableObject extends GameObject {
 	 * Reverses the direction of this object.
 	 */
 	public void reverseDirection(){
+		System.out.println("ReverseDirection");
 		this.facingRight = !this.facingRight;
 	}
 	

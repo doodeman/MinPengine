@@ -8,13 +8,12 @@ public class Character extends MovableObject {
 	}
 	@Override
 	public void update(float delta) {
-		
 		if(this.collisionSides.contains(Side.BOTTOM)){
 			if(this.facingRight){
-				this.pos.x += this.moveSpeed;
+				this.velocity.x += this.moveSpeed; 
 			}
 			else{
-				this.pos.x -= this.moveSpeed;
+				this.velocity.y -= this.moveSpeed;
 			}
 		}
 		super.update(delta);

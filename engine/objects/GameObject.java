@@ -85,7 +85,7 @@ public abstract class GameObject {
 	 * @return
 	 */
 	public Vector2 getCenter() {
-		return new Vector2(this.pos.x + this.size.x/2, this.pos.y + this.size.y); 
+		return new Vector2(this.pos.x + this.size.x/2, this.pos.y + this.size.y/2); 
 	}
 	
 	public double topBorder () {

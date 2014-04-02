@@ -16,14 +16,14 @@ public abstract class Event {
 	 * Stop the current object,
 	 */
 	protected void stop(){
-		System.out.println("Stop");
+		//System.out.println("Stop");
 		this.target.stop();
 	}
 	/**
 	 * Makes this object jump.
 	 */
 	protected void jump(){
-		System.out.println("jump");
+		//System.out.println("jump");
 		this.target.jump();
 	}
 	/**
@@ -31,14 +31,14 @@ public abstract class Event {
 	 * @param other
 	 */
 	protected void destroy(){
-		System.out.println("Destroy this");
+		//System.out.println("Destroy this");
 		this.target.destroy();
 	}
 	/**
 	 * Complete the map. I have no idea how to implement this to be honest...
 	 */
 	protected void completeMap(){
-		System.out.println("You won this map!");
+		//System.out.println("You won this map!");
 		this.target.getMap().completeMap();
 	}
 }

@@ -15,7 +15,7 @@ public class CollisionEvent extends Event{
 	 * @throws NoSuchMethodException 
 	 */
 	public void resolve(GameObject other){
-		System.out.println("resolve collision of type " + event);
+		//System.out.println("resolve collision of type " + event);
 		Method m = null;
 		try {
 			m = this.getClass().getMethod(event, GameObject.class);
@@ -44,14 +44,14 @@ public class CollisionEvent extends Event{
 	 * @param other the item you collided with.
 	 */
 	public void destroyOther(GameObject other){
-		System.out.println("Destroy other");
+		//System.out.println("Destroy other");
 		target.collisionType = "destroyOther";
 		other.destroy();
 	}
 	
 	public void none(GameObject other){
 		//nothing should happen
-		System.out.println("none");
+		//System.out.println("none");
 		target.collisionType = "none";
 	}
 	/**

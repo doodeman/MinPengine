@@ -46,7 +46,6 @@ public class GameMap implements Comparable<GameMap>{
 		for (GameObject o : gameObjects) {
 			o.update(delta);
 		}
-		//player.update(delta);
 	}
 	
 	public int compareTo(GameMap that){
@@ -61,7 +60,7 @@ public class GameMap implements Comparable<GameMap>{
 	public void loadAssets() throws IOException {
 		String mapFile = mapName.substring(0,mapName.length()-2) + "map";
 		List<String> lines = Files.readAllLines(Paths.get(mapFile), StandardCharsets.UTF_8);
-		System.out.println(mapFile);
+		//System.out.println(mapFile);
 		int x = 0;
 		int y = lines.size();
 		for(String line: lines){	
@@ -146,7 +145,6 @@ public class GameMap implements Comparable<GameMap>{
 				break;
 			}
 			else if(entry.getKey().equals("default")){
-				System.out.println("did default in " + m);
 				defAction = entry.getValue();
 			}
 		}
