@@ -1,6 +1,8 @@
 package engine.objects;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.badlogic.gdx.math.Vector2;
@@ -12,6 +14,7 @@ public abstract class MovableObject extends GameObject {
 	public double moveSpeed;
 	protected String filename;
 	protected HashMap<String, InputEvent> inputEvents;
+	List<Side> collisionSides;
 	
 	public MovableObject(GsonMap input, Vector2 location, String gameName, GameMap map) {
 		super(input, location, gameName, map); 
@@ -27,11 +30,13 @@ public abstract class MovableObject extends GameObject {
 			    inputEvents.put(key, new InputEvent(this, value));
 			}
 		}
+		collisionSides = new ArrayList<Side>();
 	}
 	
 	public void update(float delta) {
 		this.pos.add(this.velocity.cpy().scl(delta));
 		this.sprite.setPosition(this.pos.x * this.ppU, this.pos.y * this.ppU);
+		this.collisionSides.clear();
 	}
 	
 	
@@ -66,16 +71,24 @@ public abstract class MovableObject extends GameObject {
 		float deltaY = thisCenter.y - thatCenter.y;
 		Side retval; 
 		if (Math.abs(deltaX) > Math.abs(deltaY)) {
-			if (deltaX > 0) 
+			if (deltaX > 0)  {
 				retval = Side.LEFT; 
-			else 
+				this.collisionSides.add(Side.LEFT);
+			}
+			else {
 				retval = Side.RIGHT; 
+				this.collisionSides.add(Side.RIGHT);
+			}
 		}
 		else {
-			if (deltaY > 0) 
+			if (deltaY > 0) {
 				retval = Side.BOTTOM;
-			else 
+				this.collisionSides.add(Side.BOTTOM);
+			}
+			else {
 				retval = Side.TOP;
+				this.collisionSides.add(Side.TOP);
+			}
 		}
 		System.out.println(retval);
 		return retval;
@@ -90,7 +103,10 @@ public abstract class MovableObject extends GameObject {
 	 */
 	public void stop(){
 		//TODO: implement
-		this.velocity.set(0, 0);
+		if (this.collisionSides.contains(Side.RIGHT) || this.collisionSides.contains(Side.LEFT))
+			this.velocity.x = 0;
+		if (this.collisionSides.contains(Side.TOP) || this.collisionSides.contains(Side.BOTTOM))
+			this.velocity.y = 0;
 	}
 	/**
 	 * Reverses the direction of this object.
