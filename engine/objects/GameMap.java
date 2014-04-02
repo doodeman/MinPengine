@@ -23,6 +23,7 @@ public class GameMap implements Comparable<GameMap>{
 	public int mapNumber;
 	public String mapName;
 	public double gravity;
+	public float friction;
 	private String gameName;
 	public Color color;
 	public Game game;
@@ -36,6 +37,7 @@ public class GameMap implements Comparable<GameMap>{
 		GsonMap gsonMap = Helpers.getGsonMap(mapName);
 		gravity = gsonMap.gravity;		//these default to zero
 		mapNumber = gsonMap.mapNumer;
+		friction = gsonMap.friction;
 		color = new Color(gsonMap.bgcolorR, gsonMap.bgcolorG, gsonMap.bgcolorB, gsonMap.bgcolorA);
 	}
 	
@@ -141,6 +143,7 @@ public class GameMap implements Comparable<GameMap>{
 				break;
 			}
 			else if(entry.getKey().equals("default")){
+				System.out.println("did default in " + m);
 				defAction = entry.getValue();
 			}
 		}

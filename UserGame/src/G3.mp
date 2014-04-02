@@ -1,6 +1,6 @@
 {
 	"entityName": "G3",
-	"entityType": "environment",
+	"entityType": "static",
 	"gravity": "0",
 	"collidable": "true",
 	"onCollide": {"default": "destroyOther"},
