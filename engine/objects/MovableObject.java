@@ -41,7 +41,6 @@ public abstract class MovableObject extends GameObject {
 		}
 		Vector2 addPos = new Vector2(pos.x,pos.y);
 		addPos.add(this.velocity.cpy().scl(delta).sub(new Vector2(map.friction, map.friction)));
-		if(this.getEntityType().equals("player") && !this.collisionTypeX.equals("none")) System.out.println(collisionTypeX);
 		if((!collisionSides.contains(Side.RIGHT) && !collisionSides.contains( Side.LEFT)) || !collisionTypeX.equals("stop")){
 			this.pos.x = addPos.x;
 		}
@@ -155,7 +154,6 @@ public abstract class MovableObject extends GameObject {
 	 * Reverses the direction of this object.
 	 */
 	public void reverseDirection(){
-		System.out.println("ReverseDirection");
 		this.velocity.x = 0;
 		this.facingRight = !this.facingRight;
 	}
