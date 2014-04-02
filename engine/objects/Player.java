@@ -14,6 +14,6 @@ public class Player extends MovableObject {
 	@Override
 	public void update(float delta) {
 		super.update(delta);
-		//this.velocity.y -= (float) this.map.gravity * delta; 
+		this.velocity.y -= (float) this.map.gravity * delta; 
 	}
 }
