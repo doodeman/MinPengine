@@ -37,7 +37,7 @@ public class GameMap implements Comparable<GameMap>{
 	}
 	
 	public void update(float delta) {
-		checkForCollisions();
+		checkForCollisions(delta);
 		for (GameObject o : gameObjects) {
 			o.update(delta);
 		}
@@ -107,12 +107,12 @@ public class GameMap implements Comparable<GameMap>{
 		batch.end();
 	}
 	
-	public void checkForCollisions() {
+	public void checkForCollisions(float delta) {
 		List<MovableObject> mObjects = getMovableObjects(); 
 		for (MovableObject m : mObjects) {
 			for (GameObject g : gameObjects) {
 				if (!m.equals(g)) {
-					if (m.hasCollided(g) != Side.NONE) {
+					if (m.hasCollided(g, delta) != Side.NONE) {
 						resolveCollision(m, g);
 						resolveCollision(g, m);
 					}

@@ -32,6 +32,49 @@ public abstract class MovableObject extends GameObject {
 		this.pos.add(this.velocity.cpy().scl(delta));
 		this.sprite.setPosition(this.pos.x * this.ppU, this.pos.y * this.ppU);
 	}
+	
+	
+	/**
+	 * Returns Side.NONE if not collided. Otherwise returns which of this' sides collided. 
+	 * @param that
+	 * @return
+	 */
+	public Side hasCollided(GameObject that, float delta) {
+		//Rectangle 1's bottom edge is higher than Rectangle 2's top edge.
+		Vector2 nextpos = this.pos.cpy().add(this.velocity.cpy().scl(delta));
+		if ((nextpos.y) >= (that.pos.y + that.size.y)) {
+			return Side.NONE;
+		}
+		//Rectangle 1's top edge is lower than Rectangle 2's bottom edge.
+		if ((nextpos.y + this.size.y)<= that.pos.y) {
+			return Side.NONE; 
+		}
+		//Rectangle 1's left edge is to the right of Rectangle 2's right edge.
+		if ((nextpos.x) >= (that.pos.x + that.size.x) ) {
+			return Side.NONE; 
+		}
+		//Rectangle 1's right edge is to the left of Rectangle 2's left edge.
+		if ((nextpos.x + this.size.x) <= that.pos.x ) {
+			return Side.NONE; 
+		}
+		
+		double topDist = -(nextpos.y - that.topBorder());
+		double botDist = -(nextpos.y + this.size.y - that.botBorder());
+		double leftDist = -(nextpos.x - that.leftBorder());
+		double rightDist = -(nextpos.x + this.size.x - that.rightBorder());
+		
+		if ((topDist > botDist) && (topDist > leftDist) && (topDist > rightDist)) 
+			return Side.TOP; 
+		if ((botDist > topDist) && (botDist > leftDist) && (botDist > rightDist))
+			return Side.BOTTOM; 
+		if ((leftDist > topDist) && (leftDist > botDist) && (leftDist > rightDist)) 
+			return Side.LEFT; 
+		if ((rightDist > topDist) && (rightDist > botDist) && (rightDist > leftDist)) 
+			return Side.RIGHT; 
+		//this shouldn't ever happen
+		return Side.TOP; 
+	}
+	
 
 	/**
 	 * This would cause this entity to stop. We will probably have to calculate some way 
@@ -41,6 +84,7 @@ public abstract class MovableObject extends GameObject {
 	 */
 	public void stop(){
 		//TODO: implement
+		this.velocity.set(0, 0);
 	}
 	/**
 	 * Reverses the direction of this object.

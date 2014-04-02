@@ -34,6 +34,10 @@ public class DefaultPlatformerInputHandler extends InputHandler {
 			player.velocity.y = 5; 
 			return true; 
 		}
+		if (keyCode == Keys.DOWN){
+			player.velocity.y = -5;
+			return true;
+		}
 		return false; 
 	}
 	
@@ -43,7 +47,7 @@ public class DefaultPlatformerInputHandler extends InputHandler {
 			player.velocity.x = 0;
 			return true;
 		}
-		if (keyCode == Keys.SPACE) {
+		if (keyCode == Keys.SPACE || keyCode == Keys.DOWN) {
 			player.velocity.y = 0; 
 			return true; 
 		}
