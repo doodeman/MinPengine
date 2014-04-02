@@ -28,7 +28,7 @@ public abstract class GameObject {
 
 	private String entityType;
 
-	private GameMap map;
+	protected GameMap map;
 
 	//public event onCollide()... myndi returna eventi. Eða hugsanlega hafa tvö array hérna, collision og 
 	//click event. Bæta við fleirum ef það ætti við. Í hverju updatei þyrfti að fara í gegnum þessi event, og 
@@ -80,7 +80,7 @@ public abstract class GameObject {
 	 * returns the center of the object's box
 	 * @return
 	 */
-	public Vector2 center() {
+	public Vector2 getCenter() {
 		return new Vector2(this.pos.x + this.size.x/2, this.pos.y + this.size.y); 
 	}
 	

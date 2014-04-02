@@ -28,6 +28,7 @@ public abstract class MovableObject extends GameObject {
 			}
 		}
 	}
+	
 	public void update(float delta) {
 		this.pos.add(this.velocity.cpy().scl(delta));
 		this.sprite.setPosition(this.pos.x * this.ppU, this.pos.y * this.ppU);
@@ -58,21 +59,26 @@ public abstract class MovableObject extends GameObject {
 			return Side.NONE; 
 		}
 		
-		double topDist = -(nextpos.y - that.topBorder());
-		double botDist = -(nextpos.y + this.size.y - that.botBorder());
-		double leftDist = -(nextpos.x - that.leftBorder());
-		double rightDist = -(nextpos.x + this.size.x - that.rightBorder());
+		Vector2 thisCenter = this.getCenter(); 
+		Vector2 thatCenter = that.getCenter();
 		
-		if ((topDist > botDist) && (topDist > leftDist) && (topDist > rightDist)) 
-			return Side.TOP; 
-		if ((botDist > topDist) && (botDist > leftDist) && (botDist > rightDist))
-			return Side.BOTTOM; 
-		if ((leftDist > topDist) && (leftDist > botDist) && (leftDist > rightDist)) 
-			return Side.LEFT; 
-		if ((rightDist > topDist) && (rightDist > botDist) && (rightDist > leftDist)) 
-			return Side.RIGHT; 
-		//this shouldn't ever happen
-		return Side.TOP; 
+		float deltaX = thisCenter.x - thatCenter.x; 
+		float deltaY = thisCenter.y - thatCenter.y;
+		Side retval; 
+		if (Math.abs(deltaX) > Math.abs(deltaY)) {
+			if (deltaX > 0) 
+				retval = Side.LEFT; 
+			else 
+				retval = Side.RIGHT; 
+		}
+		else {
+			if (deltaY > 0) 
+				retval = Side.BOTTOM;
+			else 
+				retval = Side.TOP;
+		}
+		System.out.println(retval);
+		return retval;
 	}
 	
 

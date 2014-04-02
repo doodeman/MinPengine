@@ -41,7 +41,7 @@ public class GameMap implements Comparable<GameMap>{
 		for (GameObject o : gameObjects) {
 			o.update(delta);
 		}
-		player.update(delta);
+		//player.update(delta);
 	}
 	
 	public int compareTo(GameMap that){

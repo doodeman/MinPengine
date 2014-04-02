@@ -47,10 +47,10 @@ public class DefaultPlatformerInputHandler extends InputHandler {
 			player.velocity.x = 0;
 			return true;
 		}
-		if (keyCode == Keys.SPACE || keyCode == Keys.DOWN) {
+		/*if (keyCode == Keys.SPACE || keyCode == Keys.DOWN) {
 			player.velocity.y = 0; 
 			return true; 
-		}
+		}*/
 		return false;
 	}
 }
