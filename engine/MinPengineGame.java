@@ -4,11 +4,12 @@ import java.io.IOException;
 
 import com.badlogic.gdx.Game;
 
+import engine.defaultObjects.DefaultVictoryScreen;
 import engine.objects.GameMap;
 
 public class MinPengineGame extends Game {
 	public MapLoader loader;
-	GameScreen screen; 
+	GameScreen screen;
 	public MinPengineGame(String gameName) throws IOException{
 		this.loader = new MapLoader(gameName, this);
 	}
@@ -26,4 +27,9 @@ public class MinPengineGame extends Game {
 			e.printStackTrace();
 		}
 	}	
+	
+	public void showVictoryScreen(String text) {
+		screen.dispose();
+		setScreen(new DefaultVictoryScreen(this, text));
+	}
 }

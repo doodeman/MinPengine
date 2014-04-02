@@ -26,7 +26,7 @@ public class GameScreen implements Screen {
 	
 	@Override
 	public void dispose() {
-		AssetManager.disposeTextures(map.texturesToLoad);
+		map.disposeTextures();
 	}
 
 	@Override
