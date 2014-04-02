@@ -47,7 +47,7 @@ public abstract class MovableObject extends GameObject {
 		if((!collisionSides.contains(Side.TOP) && !collisionSides.contains(Side.BOTTOM)) || !collisionTypeY.equals("stop")){
 			this.pos.y = addPos.y;
 		}
-		else{
+		if(collisionSides.contains(Side.BOTTOM)){
 			this.jumping = false;
 		}
 		this.sprite.setPosition(this.pos.x * this.ppU, this.pos.y * this.ppU);
