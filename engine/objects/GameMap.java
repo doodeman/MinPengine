@@ -83,6 +83,10 @@ public class GameMap implements Comparable<GameMap>{
 			x = 0; 
 			y--;
 		}
+		for (GameObject o : this.gameObjects) {
+			if (!this.texturesToLoad.contains(o.spritePath))
+				this.texturesToLoad.add(o.spritePath);
+		}
 		AssetManager.loadTexturesForObjects(gameObjects);
 	}
 	private void loadObject(String word, Vector2 location) throws IOException {
@@ -182,8 +186,6 @@ public class GameMap implements Comparable<GameMap>{
 	 * Tells the asset manager to dispose all held textures
 	 */
 	public void disposeTextures() {
-		for (GameObject o : this.gameObjects) {
-			AssetManager.disposeTexture(o.spritePath);
-		}
+		AssetManager.disposeTextures(this.texturesToLoad);
 	}
 }
