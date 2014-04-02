@@ -35,6 +35,7 @@ public class CollisionEvent extends Event{
 	 * this function is implemented in the super class Event, implement it there.
 	 */
 	public void destroy(GameObject other){
+		target.collisionType = "destroy";
 		destroy();
 	}
 	
@@ -44,18 +45,21 @@ public class CollisionEvent extends Event{
 	 */
 	public void destroyOther(GameObject other){
 		System.out.println("Destroy other");
+		target.collisionType = "destroyOther";
 		other.destroy();
 	}
 	
 	public void none(GameObject other){
 		//nothing should happen
+		System.out.println("none");
+		target.collisionType = "none";
 	}
 	/**
 	 * This would cause this entity to reverse it's direction. Away from the "other"
 	 * @param other
 	 */
 	public void reverseDirection(GameObject other){
-		System.out.println("Reverse Direction");
+		target.collisionType = "reverse";
 		target.reverseDirection();
 	}
 	
@@ -65,7 +69,7 @@ public class CollisionEvent extends Event{
 	 * @param other
 	 */
 	public void jump(GameObject other){
-		System.out.println("jump");
+		target.collisionType = "jump";
 		jump();
 	}
 	
@@ -75,6 +79,7 @@ public class CollisionEvent extends Event{
 	 * @param other
 	 */
 	public void completeMap(GameObject other){
+		target.collisionType = "completeMap";
 		completeMap();
 	}
 	
@@ -83,6 +88,7 @@ public class CollisionEvent extends Event{
 	 * @param other
 	 */
 	public void stop(GameObject other){
+		target.collisionType = "stop";
 		stop();
 	}
 }

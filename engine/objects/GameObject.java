@@ -43,6 +43,7 @@ public abstract class GameObject {
 		this.size = new Vector2(1,1); 
 		sprite = new Sprite(); 
 		collisionEvents = new HashMap<String,CollisionEvent>();
+		this.collisionType = "none";
 		if(input.onCollide != null){
 			for (Map.Entry<String, String> entry : input.onCollide.entrySet()) {
 			    String key = entry.getKey();
@@ -104,7 +105,6 @@ public abstract class GameObject {
 	 * But it should not do anything in static or non-movable objects, and thus is empty here.
 	 */
 	public void stop() {
-		this.collisionType = "stop";
 		// Intentionally empty.
 		
 	}
@@ -112,7 +112,6 @@ public abstract class GameObject {
 	 * This function would destroy this object. Kill it essentially. Make it so.
 	 */
 	public void destroy() {
-		this.collisionType = "destroy";
 		// TODO Auto-generated method stub
 		
 	}
@@ -120,7 +119,6 @@ public abstract class GameObject {
 	 * This method is implemented in the "movableobject" class, and should not be used here.
 	 */
 	public void reverseDirection() {
-		this.collisionType = "reverseDirection";
 		// TODO Auto-generated method stub
 		
 	}

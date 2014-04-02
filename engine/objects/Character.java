@@ -17,7 +17,6 @@ public class Character extends MovableObject {
 				this.pos.x -= this.moveSpeed;
 			}
 		}
-		this.velocity.y -= (float) this.map.gravity * delta;
 		super.update(delta);
 	}
 }
