@@ -6,13 +6,17 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 
+
+import com.badlogic.gdx.Game;
+
 import engine.objects.GameMap;
 import engine.objects.Helpers;
 
 public class MapLoader {
 	private String gameName;
 	private ArrayList<GameMap> maps;
-	public MapLoader(String gameName) throws IOException{
+	
+	public MapLoader(String gameName, Game g) throws IOException{
 		maps = new ArrayList<GameMap>(); 
 		this.gameName = gameName; 
 		final File folder = new File(this.gameName + "/src");
@@ -23,6 +27,7 @@ public class MapLoader {
 					String newFile = file.getName().substring(0, file.getName().length()-3) + "mp"; //take in the name of the file, minus the ending
 					String mapConfig = this.gameName + "/src/" + newFile;
 					GameMap newMap = parseMap(mapConfig);
+					newMap.game = g;
 					maps.add(newMap);
 				}
 			}

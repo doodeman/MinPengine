@@ -10,7 +10,7 @@ public class MinPengineGame extends Game {
 	public MapLoader loader;
 	GameScreen screen; 
 	public MinPengineGame(String gameName) throws IOException{
-		this.loader = new MapLoader(gameName);
+		this.loader = new MapLoader(gameName, this);
 	}
 	
 	
