@@ -3,7 +3,7 @@
 	"entityType": "player",
 	"gravity": "1",
 	"collidable": "true",
-	"onCollide": {"default": "stop", "character": "destroy"},
+	"onCollide": {"default": "stop", "ai": "none","character": "destroy"},
 	"sizeX": "0.8",
 	"sizeY": "0.8",
 	"moveSpeed": "1",

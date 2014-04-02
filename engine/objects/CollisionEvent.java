@@ -47,6 +47,9 @@ public class CollisionEvent extends Event{
 		other.destroy();
 	}
 	
+	public void none(GameObject other){
+		//nothing should happen
+	}
 	/**
 	 * This would cause this entity to reverse it's direction. Away from the "other"
 	 * @param other

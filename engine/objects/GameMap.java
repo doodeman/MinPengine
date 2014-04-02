@@ -96,6 +96,9 @@ public class GameMap implements Comparable<GameMap>{
 		else if(type.equals("static")){
 			gameObjects.add(new StaticObject(gsonMap, location, this.gameName, this));
 		}
+		else if(type.equals("ai")){
+			gameObjects.add(new AIObject(gsonMap, location, this.gameName, this));
+		}
 		else{
 			System.out.println(type + " is not a recognized object type");
 		}

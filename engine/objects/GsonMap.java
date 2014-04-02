@@ -9,12 +9,11 @@ public class GsonMap {
 	public boolean collidable;
 	public float sizeX;
 	public float sizeY;
-	public int moveSpeed;
+	public float moveSpeed;
 	public String graphics;
 	public Map<String, String> onCollide;
 	public Map<String, String> controls;
 	public int mapNumer;
-	public String onFutureFall;
 	public boolean facingRight;
 	public float bgcolorR;
 	public float bgcolorG;

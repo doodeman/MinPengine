@@ -1,6 +1,6 @@
 {
 	"mapNumer" : "0",
-	"gravity": "0",
+	"gravity": "1",
 	"friction": "0",
 	"bgcolorR": "0",
 	"bgcolorG": "1",

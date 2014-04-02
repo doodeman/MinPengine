@@ -11,13 +11,18 @@ public abstract class MovableObject extends GameObject {
 	public double gravity;
 	public Vector2 velocity; 
 	boolean facingRight;
-	public double moveSpeed;
+	public float moveSpeed;
+	private float lastX;
+	private float lastY;
 	protected String filename;
 	protected HashMap<String, InputEvent> inputEvents;
 	List<Side> collisionSides;
 	
 	public MovableObject(GsonMap input, Vector2 location, String gameName, GameMap map) {
 		super(input, location, gameName, map); 
+		collisionType = "none";
+		this.lastX = this.pos.x;
+		this.lastY = this.pos.y;
 		velocity = new Vector2(0,0); 
 		gravity = input.gravity; 
 		moveSpeed = input.moveSpeed;
@@ -35,6 +40,20 @@ public abstract class MovableObject extends GameObject {
 	
 	public void update(float delta) {
 		this.pos.add(this.velocity.cpy().scl(delta).sub(new Vector2(map.friction, map.friction)));
+		if(collisionType.equals("stop")){
+			if(collisionSides.contains(Side.RIGHT) || collisionSides.contains( Side.LEFT)){
+				this.pos.x = lastX;
+			}
+			else{
+				lastX = this.pos.x;
+			}
+			if(collisionSides.contains(Side.TOP) || collisionSides.contains(Side.BOTTOM)){
+				this.pos.y = lastY;
+			}
+			else{
+				lastY = this.pos.y;
+			}
+		}
 		this.sprite.setPosition(this.pos.x * this.ppU, this.pos.y * this.ppU);
 		this.collisionSides.clear();
 	}
@@ -103,15 +122,13 @@ public abstract class MovableObject extends GameObject {
 	 */
 	public void stop(){
 		//TODO: implement
-		if (this.collisionSides.contains(Side.RIGHT) || this.collisionSides.contains(Side.LEFT))
-			this.velocity.x = 0;
-		if (this.collisionSides.contains(Side.TOP) || this.collisionSides.contains(Side.BOTTOM))
-			this.velocity.y = 0;
+		this.collisionType = "stop";
 	}
 	/**
 	 * Reverses the direction of this object.
 	 */
 	public void reverseDirection(){
+		this.collisionType = "reverse";
 		this.facingRight = !this.facingRight;
 	}
 	
