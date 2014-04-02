@@ -15,9 +15,11 @@ public abstract class MovableObject extends GameObject {
 	protected String filename;
 	protected HashMap<String, InputEvent> inputEvents;
 	List<Side> collisionSides;
+	private boolean jumping;
 	
 	public MovableObject(GsonMap input, Vector2 location, String gameName, GameMap map) {
 		super(input, location, gameName, map); 
+		this.jumping = false;
 		velocity = new Vector2(0,0); 
 		gravity = input.gravity; 
 		moveSpeed = input.moveSpeed;
@@ -45,6 +47,9 @@ public abstract class MovableObject extends GameObject {
 		}
 		if((!collisionSides.contains(Side.TOP) && !collisionSides.contains(Side.BOTTOM)) || !collisionTypeY.equals("stop")){
 			this.pos.y = addPos.y;
+		}
+		else{
+			this.jumping = false;
 		}
 		this.sprite.setPosition(this.pos.x * this.ppU, this.pos.y * this.ppU);
 		this.collisionSides.clear();
@@ -159,6 +164,10 @@ public abstract class MovableObject extends GameObject {
 	 * Makes this object jump. Heel!
 	 */
 	public void jump(){
+		if(!jumping){
+			velocity.y = 5; 
+			jumping = true;
+		}
 		//TODO: implement
 	}
 }
