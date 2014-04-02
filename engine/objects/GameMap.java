@@ -8,11 +8,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map.Entry;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 
 import engine.AssetManager;
+import engine.defaultObjects.DefaultVictoryScreen;
 
 public class GameMap implements Comparable<GameMap>{
 	public List<String> texturesToLoad;
@@ -24,6 +26,7 @@ public class GameMap implements Comparable<GameMap>{
 	public float friction;
 	private String gameName;
 	public Color color;
+	public Game game;
 	
 
 	public GameMap(String mapName, String gameName) throws IOException {
@@ -166,7 +169,7 @@ public class GameMap implements Comparable<GameMap>{
 	 * This happens when the map completes... if it wins or something.
 	 */
 	public void completeMap() {
-		// TODO Auto-generated method stub
+		game.setScreen(new DefaultVictoryScreen(game, "WINNAR"));
 		
 	}
 }

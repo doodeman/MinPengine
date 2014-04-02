@@ -3,7 +3,7 @@
   associations="true" dependencies="false" nesting-relationships="true">  
   <class id="1" language="java" name="engine.AssetManager" project="MinPengine" 
     file="/MinPengine/engine/AssetManager.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1346" y="119"/>    
+    <position height="-1" width="-1" x="261" y="548"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -12,7 +12,7 @@
   </class>  
   <class id="2" language="java" name="engine.MinPengineGame" project="MinPengine" 
     file="/MinPengine/engine/MinPengineGame.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="708" y="36"/>    
+    <position height="-1" width="-1" x="789" y="55"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -21,7 +21,7 @@
   </class>  
   <class id="3" language="java" name="engine.InputHandler" project="MinPengine" 
     file="/MinPengine/engine/InputHandler.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="947" y="528"/>    
+    <position height="-1" width="-1" x="1137" y="396"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -30,7 +30,7 @@
   </class>  
   <class id="4" language="java" name="engine.MinPengineException" project="MinPengine" 
     file="/MinPengine/engine/MinPengineException.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1630" y="213"/>    
+    <position height="-1" width="-1" x="525" y="512"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -39,7 +39,7 @@
   </class>  
   <class id="5" language="java" name="engine.GameScreen" project="MinPengine" file="/MinPengine/engine/GameScreen.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="626" y="261"/>    
+    <position height="-1" width="-1" x="749" y="308"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -48,7 +48,7 @@
   </class>  
   <class id="6" language="java" name="engine.MapLoader" project="MinPengine" file="/MinPengine/engine/MapLoader.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="926" y="215"/>    
+    <position height="-1" width="-1" x="1053" y="143"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -57,7 +57,7 @@
   </class>  
   <class id="7" language="java" name="engine.defaultObjects.DefaultPlayer" project="MinPengine" 
     file="/MinPengine/engine/defaultObjects/DefaultPlayer.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="487" y="724"/>    
+    <position height="-1" width="-1" x="753" y="722"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -66,7 +66,7 @@
   </class>  
   <class id="8" language="java" name="engine.defaultObjects.DefaultPlatformerInputHandler" project="MinPengine" 
     file="/MinPengine/engine/defaultObjects/DefaultPlatformerInputHandler.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="555" y="575"/>    
+    <position height="-1" width="-1" x="737" y="581"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -75,7 +75,7 @@
   </class>  
   <enumeration id="9" language="java" name="engine.objects.Side" project="MinPengine" 
     file="/MinPengine/engine/objects/Side.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1126" y="107"/>    
+    <position height="-1" width="-1" x="303" y="114"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -84,7 +84,7 @@
   </enumeration>  
   <class id="10" language="java" name="engine.objects.GameObject" project="MinPengine" 
     file="/MinPengine/engine/objects/GameObject.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1359" y="1129"/>    
+    <position height="-1" width="-1" x="1485" y="787"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -93,7 +93,7 @@
   </class>  
   <class id="11" language="java" name="engine.objects.EnvironmentObject" project="MinPengine" 
     file="/MinPengine/engine/objects/EnvironmentObject.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="987" y="937"/>    
+    <position height="-1" width="-1" x="1155" y="961"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -102,7 +102,7 @@
   </class>  
   <class id="12" language="java" name="engine.objects.StaticObject" project="MinPengine" 
     file="/MinPengine/engine/objects/StaticObject.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1364" y="1534"/>    
+    <position height="-1" width="-1" x="1682" y="451"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -111,7 +111,7 @@
   </class>  
   <class id="13" language="java" name="engine.objects.Player" project="MinPengine" 
     file="/MinPengine/engine/objects/Player.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1005" y="770"/>    
+    <position height="-1" width="-1" x="1133" y="693"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -120,7 +120,7 @@
   </class>  
   <class id="14" language="java" name="engine.objects.GameMap" project="MinPengine" 
     file="/MinPengine/engine/objects/GameMap.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1405" y="475"/>    
+    <position height="-1" width="-1" x="1442" y="204"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -129,7 +129,7 @@
   </class>  
   <class id="15" language="java" name="engine.objects.Character" project="MinPengine" 
     file="/MinPengine/engine/objects/Character.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="876" y="1170"/>    
+    <position height="-1" width="-1" x="657" y="1194"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -138,7 +138,7 @@
   </class>  
   <class id="16" language="java" name="engine.objects.Event" project="MinPengine" 
     file="/MinPengine/engine/objects/Event.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="737" y="1453"/>    
+    <position height="-1" width="-1" x="1182" y="1168"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -147,7 +147,7 @@
   </class>  
   <class id="17" language="java" name="engine.objects.MovableObject" project="MinPengine" 
     file="/MinPengine/engine/objects/MovableObject.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="615" y="962"/>    
+    <position height="-1" width="-1" x="783" y="935"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -156,7 +156,7 @@
   </class>  
   <class id="18" language="java" name="engine.objects.GsonMap" project="MinPengine" 
     file="/MinPengine/engine/objects/GsonMap.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="348" y="204"/>    
+    <position height="-1" width="-1" x="521" y="218"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -165,7 +165,7 @@
   </class>  
   <class id="19" language="java" name="engine.objects.CollisionEvent" project="MinPengine" 
     file="/MinPengine/engine/objects/CollisionEvent.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1055" y="1514"/>    
+    <position height="-1" width="-1" x="1421" y="1226"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -174,7 +174,7 @@
   </class>  
   <class id="20" language="java" name="engine.objects.InputEvent" project="MinPengine" 
     file="/MinPengine/engine/objects/InputEvent.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="399" y="1251"/>    
+    <position height="-1" width="-1" x="955" y="1187"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -183,7 +183,7 @@
   </class>  
   <class id="21" language="java" name="engine.objects.Helpers" project="MinPengine" 
     file="/MinPengine/engine/objects/Helpers.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1606" y="71"/>    
+    <position height="-1" width="-1" x="284" y="325"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -207,7 +207,7 @@
     <end type="TARGET" refId="17"/>  
   </generalization>  
   <association id="27">    
-    <bendpoint x="1317" y="758"/>    
+    <bendpoint x="1413" y="461"/>    
     <end type="SOURCE" refId="10" navigable="false">      
       <attribute id="28" name="map"/>      
       <multiplicity id="29" minimum="0" maximum="1"/>    
@@ -324,6 +324,7 @@
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="67">    
+    <bendpoint x="1527" y="455"/>    
     <end type="SOURCE" refId="14" navigable="false">      
       <attribute id="68" name="gameObjects"/>      
       <multiplicity id="69" minimum="0" maximum="2147483647"/>    
