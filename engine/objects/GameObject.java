@@ -48,6 +48,7 @@ public abstract class GameObject {
 			    collisionEvents.put(key, new CollisionEvent(this, value));
 			}
 		}
+		
 		this.size = new Vector2(input.sizeX, input.sizeY);
 		this.spritePath = gameName + "/" + input.graphics;
 		this.collidable = input.collidable;

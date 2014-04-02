@@ -34,7 +34,7 @@ public abstract class MovableObject extends GameObject {
 	}
 	
 	public void update(float delta) {
-		this.pos.add(this.velocity.cpy().scl(delta));
+		this.pos.add(this.velocity.cpy().scl(delta).sub(new Vector2(map.friction, map.friction)));
 		this.sprite.setPosition(this.pos.x * this.ppU, this.pos.y * this.ppU);
 		this.collisionSides.clear();
 	}

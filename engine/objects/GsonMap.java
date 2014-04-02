@@ -20,4 +20,5 @@ public class GsonMap {
 	public float bgcolorG;
 	public float bgcolorB;
 	public float bgcolorA;
+	public float friction;
 }
