@@ -10,10 +10,10 @@ public class Character extends MovableObject {
 	public void update(float delta) {
 		if(this.collisionSides.contains(Side.BOTTOM)){
 			if(this.facingRight){
-				this.velocity.x += this.moveSpeed; 
+				this.velocity.x = this.moveSpeed; 
 			}
 			else{
-				this.velocity.y -= this.moveSpeed;
+				this.velocity.x = -this.moveSpeed;
 			}
 		}
 		super.update(delta);

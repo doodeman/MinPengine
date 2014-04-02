@@ -24,7 +24,8 @@ public abstract class GameObject {
 	
 	public String spritePath;
 
-	protected String collisionType;
+	protected String collisionTypeX;
+	protected String collisionTypeY;
 
 	private String entityName;
 
@@ -43,7 +44,8 @@ public abstract class GameObject {
 		this.size = new Vector2(1,1); 
 		sprite = new Sprite(); 
 		collisionEvents = new HashMap<String,CollisionEvent>();
-		this.collisionType = "none";
+		this.collisionTypeX = "none";
+		this.collisionTypeY = "none";
 		if(input.onCollide != null){
 			for (Map.Entry<String, String> entry : input.onCollide.entrySet()) {
 			    String key = entry.getKey();
@@ -85,7 +87,7 @@ public abstract class GameObject {
 	 * @return
 	 */
 	public Vector2 getCenter() {
-		return new Vector2(this.pos.x + this.size.x/2, this.pos.y + this.size.y/2); 
+		return new Vector2(this.pos.x + this.size.x/2, this.pos.y + this.size.y); 
 	}
 	
 	public double topBorder () {

@@ -34,24 +34,22 @@ public abstract class MovableObject extends GameObject {
 	}
 	
 	public void update(float delta) {
-		if(!collisionSides.contains(Side.BOTTOM) || !collisionType.equals("stop")){
+		if(!collisionSides.contains(Side.BOTTOM) || !collisionTypeY.equals("stop")){
 			this.velocity.y -= (float) this.map.gravity * delta;
 		}
 		Vector2 addPos = new Vector2(pos.x,pos.y);
 		addPos.add(this.velocity.cpy().scl(delta).sub(new Vector2(map.friction, map.friction)));
-		if(!collisionType.equals("STOP") || collisionSides.size() == 0){
-			this.pos = addPos;
+		if(this.getEntityType().equals("player") && !this.collisionTypeX.equals("none")) System.out.println(collisionTypeX);
+		if((!collisionSides.contains(Side.RIGHT) && !collisionSides.contains( Side.LEFT)) || !collisionTypeX.equals("stop")){
+			this.pos.x = addPos.x;
 		}
-		else{
-			if(!collisionSides.contains(Side.RIGHT) && !collisionSides.contains( Side.LEFT)){
-				this.pos.x = addPos.x;
-			}
-			if(!collisionSides.contains(Side.TOP) && !collisionSides.contains(Side.BOTTOM)){
-				this.pos.y = addPos.y;
-			}
+		if((!collisionSides.contains(Side.TOP) && !collisionSides.contains(Side.BOTTOM)) || !collisionTypeY.equals("stop")){
+			this.pos.y = addPos.y;
 		}
 		this.sprite.setPosition(this.pos.x * this.ppU, this.pos.y * this.ppU);
 		this.collisionSides.clear();
+		this.collisionTypeX = "none";
+		this.collisionTypeY = "none";
 	}
 	
 	private Side hasCollidedX(GameObject that, float delta){
@@ -143,9 +141,9 @@ public abstract class MovableObject extends GameObject {
 	 */
 	public void stop(){
 		//TODO: implement
-		if (this.collisionSides.contains(Side.RIGHT) || this.collisionSides.contains(Side.LEFT))
+		if ((this.collisionSides.contains(Side.RIGHT) || this.collisionSides.contains(Side.LEFT)) && this.collisionTypeX.equals("stop"))
 			this.velocity.x = 0;
-		if (this.collisionSides.contains(Side.TOP) || this.collisionSides.contains(Side.BOTTOM))
+		if ((this.collisionSides.contains(Side.TOP) || this.collisionSides.contains(Side.BOTTOM)) && this.collisionTypeY.equals("stop"))
 			this.velocity.y = 0;
 	}
 	/**
@@ -153,6 +151,7 @@ public abstract class MovableObject extends GameObject {
 	 */
 	public void reverseDirection(){
 		System.out.println("ReverseDirection");
+		this.velocity.x = 0;
 		this.facingRight = !this.facingRight;
 	}
 	

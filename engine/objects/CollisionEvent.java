@@ -14,16 +14,16 @@ public class CollisionEvent extends Event{
 	 * @throws SecurityException - This throws all the exeptions
 	 * @throws NoSuchMethodException 
 	 */
-	public void resolve(GameObject other){
+	public void resolve(GameObject other, Side collisionSide){
 		//System.out.println("resolve collision of type " + event);
 		Method m = null;
 		try {
-			m = this.getClass().getMethod(event, GameObject.class);
+			m = this.getClass().getMethod(event, GameObject.class, Side.class);
 		} 
 		catch (NoSuchMethodException e1) {e1.printStackTrace();} 
 		catch (SecurityException e1) {e1.printStackTrace();}
 		try {
-			m.invoke(this, other);
+			m.invoke(this, other, collisionSide);
 		}
 		catch (IllegalAccessException e) {e.printStackTrace();} 
 		catch (IllegalArgumentException e) {e.printStackTrace();} 
@@ -34,8 +34,8 @@ public class CollisionEvent extends Event{
 	 * This function would cause an entity to be destroyed.
 	 * this function is implemented in the super class Event, implement it there.
 	 */
-	public void destroy(GameObject other){
-		target.collisionType = "destroy";
+	public void destroy(GameObject other, Side collisionSide){
+		this.setCollisionSide(other, collisionSide, "destroy");
 		destroy();
 	}
 	
@@ -43,23 +43,23 @@ public class CollisionEvent extends Event{
 	 * This should destroy the object that this item collided with.
 	 * @param other the item you collided with.
 	 */
-	public void destroyOther(GameObject other){
+	public void destroyOther(GameObject other, Side collisionSide){
 		//System.out.println("Destroy other");
-		target.collisionType = "destroyOther";
+		this.setCollisionSide(other, collisionSide, "destroyOther");
 		other.destroy();
 	}
 	
-	public void none(GameObject other){
+	public void none(GameObject other, Side collisionSide){
 		//nothing should happen
 		//System.out.println("none");
-		target.collisionType = "none";
+		this.setCollisionSide(other, collisionSide, "none");
 	}
 	/**
 	 * This would cause this entity to reverse it's direction. Away from the "other"
 	 * @param other
 	 */
-	public void reverseDirection(GameObject other){
-		target.collisionType = "reverse";
+	public void reverseDirection(GameObject other, Side collisionSide){
+		this.setCollisionSide(other, collisionSide, "reverseDirection");
 		target.reverseDirection();
 	}
 	
@@ -68,8 +68,8 @@ public class CollisionEvent extends Event{
 	 * This method uses the general method stop from the normal event class. Implement that.
 	 * @param other
 	 */
-	public void jump(GameObject other){
-		target.collisionType = "jump";
+	public void jump(GameObject other, Side collisionSide){
+		this.setCollisionSide(other, collisionSide, "jump");
 		jump();
 	}
 	
@@ -78,8 +78,8 @@ public class CollisionEvent extends Event{
 	 * Implemented in the Event class
 	 * @param other
 	 */
-	public void completeMap(GameObject other){
-		target.collisionType = "completeMap";
+	public void completeMap(GameObject other, Side collisionSide){
+		this.setCollisionSide(other, collisionSide, "completeMap");
 		completeMap();
 	}
 	
@@ -87,8 +87,17 @@ public class CollisionEvent extends Event{
 	 * Causes this entity to stop.
 	 * @param other
 	 */
-	public void stop(GameObject other){
-		target.collisionType = "stop";
+	public void stop(GameObject other, Side collisionSide){
+		this.setCollisionSide(other, collisionSide, "stop");
 		stop();
+	}
+	private void setCollisionSide(GameObject other, Side collisionSide, String type) {
+		// TODO Auto-generated method stub
+		if(collisionSide == Side.BOTTOM || collisionSide == Side.TOP){
+			target.collisionTypeY = type;
+		}
+		else{
+			target.collisionTypeX = type;
+		}
 	}
 }

@@ -119,9 +119,10 @@ public class GameMap implements Comparable<GameMap>{
 		for (MovableObject m : mObjects) {
 			for (GameObject g : gameObjects) {
 				if (!m.equals(g)) {
-					if (m.hasCollided(g, delta) != Side.NONE) {
-						resolveCollision(m, g);
-						resolveCollision(g, m);
+					Side collision = m.hasCollided(g, delta); 
+					if (collision != Side.NONE) {
+						resolveCollision(m, g, collision);
+						resolveCollision(g, m, collision);
 					}
 				}
 			}
@@ -135,12 +136,12 @@ public class GameMap implements Comparable<GameMap>{
 	 * @param m - the item that we are checking
 	 * @param g	- the item that we collided with
 	 */
-	private void resolveCollision(GameObject m, GameObject g) {
+	private void resolveCollision(GameObject m, GameObject g, Side collisionSide) {
 		CollisionEvent defAction = null;
 		boolean resolved = false;
 		for (Entry<String, CollisionEvent> entry : m.getCollisionEvents().entrySet()) {
 			if(entry.getKey().equals(g.getEntityType())){
-				entry.getValue().resolve(g);
+				entry.getValue().resolve(g, collisionSide);
 				resolved = true;
 				break;
 			}
@@ -149,7 +150,7 @@ public class GameMap implements Comparable<GameMap>{
 			}
 		}
 		if(!resolved && defAction != null){
-			defAction.resolve(g);
+			defAction.resolve(g, collisionSide);
 		}
 	}
 

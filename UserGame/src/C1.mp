@@ -6,7 +6,7 @@
 	"onCollide": {"default": "stop", "ai" : "reverseDirection", "player": "destroyOther", "projectile": "destroy"},
 	"sizeX": "0.5",
 	"sizeY": "0.5",
-	"moveSpeed": "0.1",
+	"moveSpeed": "2",
 	"graphics": "assets/c1.png",
 	"facingRight" : "true"
 } 
