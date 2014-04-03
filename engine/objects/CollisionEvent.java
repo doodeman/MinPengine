@@ -86,7 +86,7 @@ public class CollisionEvent extends Event{
 	 */
 	public void jumpOther(GameObject other, Side collisionSide, String[] args){
 		this.setCollisionSide(other, collisionSide, "jump");
-		System.out.println("here");
+		//System.out.println("here");
 		other.jump(Float.parseFloat(args[1]));
 	}
 	
