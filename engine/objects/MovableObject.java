@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 
 public abstract class MovableObject extends GameObject {
@@ -118,7 +119,9 @@ public abstract class MovableObject extends GameObject {
 		}
 		return null;
 	}
-
+	public void render(SpriteBatch batch) {
+		sprite.draw(batch);
+	}
 	
 	/**
 	 * Returns Side.NONE if not collided. Otherwise returns which of this' sides collided. 
@@ -175,9 +178,17 @@ public abstract class MovableObject extends GameObject {
 	}
 	public void moveLeft(float distance){
 		this.velocity.x -= distance;
+		if(facingRight){
+			this.facingRight = false;
+			sprite.flip(true, false);
+		}
 	}
 	public void moveRight(float distance){
 		this.velocity.x += distance;
+		if(!facingRight){
+			this.facingRight = true;
+			sprite.flip(true, false);
+		}
 	}
 	public void moveUp(float distance){
 		this.velocity.y += distance;
