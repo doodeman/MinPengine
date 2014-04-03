@@ -27,7 +27,15 @@ public abstract class MovableObject extends GameObject {
 			for (Map.Entry<String, String> entry : input.controls.entrySet()) {
 			    String key = entry.getKey();
 			    String value = entry.getValue();
-			    map.inputEvents.put(key, new InputEvent(this, value));
+			    ArrayList<InputEvent> eventArray = map.inputEvents.get(key);
+			    if(eventArray == null){
+			    	eventArray = new ArrayList<InputEvent>();
+			    	eventArray.add(new InputEvent(this, value));
+			    	map.inputEvents.put(key, eventArray);
+			    }
+			    else{
+			    	eventArray.add(new InputEvent(this, value));
+			    }
 			}
 		}
 		collisionSides = new ArrayList<Side>();

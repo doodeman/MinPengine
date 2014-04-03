@@ -29,7 +29,7 @@ public class GameMap implements Comparable<GameMap>{
 	public Color color;
 	public Game game;
 	public ArrayList<String> keys;	
-	public HashMap<String, InputEvent> inputEvents = new HashMap<String, InputEvent>();;
+	public HashMap<String, ArrayList<InputEvent>> inputEvents = new HashMap<String, ArrayList<InputEvent>>();;
 	
 
 	public GameMap(String mapName, String gameName) throws IOException {
@@ -48,8 +48,12 @@ public class GameMap implements Comparable<GameMap>{
 	public void update(float delta) {
 		if(keys.size() > 0){
 			for(String key : keys){
-				InputEvent ev = inputEvents.get(key);
-				if(ev != null) ev.resolve();
+				ArrayList<InputEvent> events = inputEvents.get(key);
+				if(events != null) {
+					for(InputEvent e : events){
+						e.resolve();
+					}
+				}
 			}
 		}
 		keys.clear();
