@@ -165,6 +165,7 @@ public abstract class MovableObject extends GameObject {
 	public void reverseDirection(){
 		this.velocity.x = 0;
 		this.facingRight = !this.facingRight;
+		sprite.flip(true, false);
 	}
 	
 	/**
