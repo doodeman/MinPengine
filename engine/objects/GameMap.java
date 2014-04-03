@@ -46,6 +46,10 @@ public class GameMap implements Comparable<GameMap>{
 		for (GameObject o : gameObjects) {
 			o.update(delta);
 		}
+		if (this.player.isDead) {
+			this.game.getScreen().dispose();
+			this.game.setScreen(new DefaultVictoryScreen(this.game, "YOU LOSE"));
+		}
 	}
 	
 	public int compareTo(GameMap that){
@@ -79,6 +83,10 @@ public class GameMap implements Comparable<GameMap>{
 			x = 0; 
 			y--;
 		}
+		for (GameObject o : this.gameObjects) {
+			if (!this.texturesToLoad.contains(o.spritePath))
+				this.texturesToLoad.add(o.spritePath);
+		}
 		AssetManager.loadTexturesForObjects(gameObjects);
 	}
 	private void loadObject(String word, Vector2 location) throws IOException {
@@ -109,7 +117,8 @@ public class GameMap implements Comparable<GameMap>{
 	public void renderObjects(SpriteBatch batch) {
 		batch.begin();
 		for (GameObject o : gameObjects){
-			o.render(batch);
+			if (!o.isDead)
+				o.render(batch);
 		}
 		batch.end();
 	}
@@ -168,7 +177,15 @@ public class GameMap implements Comparable<GameMap>{
 	 * This happens when the map completes... if it wins or something.
 	 */
 	public void completeMap() {
-		game.setScreen(new DefaultVictoryScreen(game, "WINNAR"));
+		this.game.getScreen().dispose();
+		this.game.setScreen(new DefaultVictoryScreen(this.game, "WINNAR"));
 		
+	}
+	
+	/**
+	 * Tells the asset manager to dispose all held textures
+	 */
+	public void disposeTextures() {
+		AssetManager.disposeTextures(this.texturesToLoad);
 	}
 }

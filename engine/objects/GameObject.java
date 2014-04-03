@@ -32,6 +32,8 @@ public abstract class GameObject {
 	private String entityType;
 
 	protected GameMap map;
+	
+	public boolean isDead;
 
 	//public event onCollide()... myndi returna eventi. Eða hugsanlega hafa tvö array hérna, collision og 
 	//click event. Bæta við fleirum ef það ætti við. Í hverju updatei þyrfti að fara í gegnum þessi event, og 
@@ -58,6 +60,7 @@ public abstract class GameObject {
 		this.spritePath = gameName + "/" + input.graphics;
 		this.collidable = input.collidable;
 		this.entityType = input.entityType;
+		this.isDead = false;
 	}
 	
 	public GameMap getMap(){
@@ -115,7 +118,8 @@ public abstract class GameObject {
 	 */
 	public void destroy() {
 		// TODO Auto-generated method stub
-		
+		//System.out.println(this.entityName + " destroyed");
+		this.isDead = true;
 	}
 	/**
 	 * This method is implemented in the "movableobject" class, and should not be used here.
