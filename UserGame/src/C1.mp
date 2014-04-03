@@ -8,5 +8,6 @@
 	"sizeY": "0.5",
 	"moveSpeed": "2",
 	"graphics": "assets/c1.png",
-	"facingRight" : "true"
+	"facingRight" : "true",
+	"controls": {"SpaceDown": "jump"}
 } 
