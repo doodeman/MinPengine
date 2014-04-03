@@ -126,8 +126,9 @@ public abstract class GameObject {
 	}
 	/**
 	 * This method is implemented in the "movableObject" class, and should not be used here.
+	 * @param height 
 	 */
-	public void jump() {
+	public void jump(float height) {
 		// TODO Auto-generated method stub
 		
 	}

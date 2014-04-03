@@ -31,7 +31,7 @@ public class DefaultPlatformerInputHandler extends InputHandler {
 			return true; 
 		}
 		if (keyCode == Keys.SPACE || keyCode == Keys.UP) {
-			player.jump();
+			player.jump(3);
 			return true; 
 		}
 		if (keyCode == Keys.DOWN){

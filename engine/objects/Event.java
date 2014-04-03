@@ -22,9 +22,9 @@ public abstract class Event {
 	/**
 	 * Makes this object jump.
 	 */
-	protected void jump(){
+	protected void jump(float height){
 		//System.out.println("jump");
-		this.target.jump();
+		this.target.jump(height);
 	}
 	/**
 	 * Kills this object.

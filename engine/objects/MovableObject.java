@@ -161,9 +161,9 @@ public abstract class MovableObject extends GameObject {
 	/**
 	 * Makes this object jump. Heel!
 	 */
-	public void jump(){
+	public void jump(float height){
 		if(!jumping){
-			velocity.y = 5; 
+			velocity.y = height; 
 			jumping = true;
 		}
 		//TODO: implement

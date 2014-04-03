@@ -77,7 +77,17 @@ public class CollisionEvent extends Event{
 	 */
 	public void jump(GameObject other, Side collisionSide, String[] args){
 		this.setCollisionSide(other, collisionSide, "jump");
-		jump();
+		jump(Float.parseFloat(args[1]));
+	}
+	/**
+	 * This would cause the other to jump... out of fear I presume.
+	 * This method uses the general method stop from the normal event class. Implement that.
+	 * @param other
+	 */
+	public void jumpOther(GameObject other, Side collisionSide, String[] args){
+		this.setCollisionSide(other, collisionSide, "jump");
+		System.out.println("here");
+		other.jump(Float.parseFloat(args[1]));
 	}
 	
 	/**
