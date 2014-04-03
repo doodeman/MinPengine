@@ -117,4 +117,8 @@ public class CollisionEvent extends Event{
 			target.collisionTypeX = type;
 		}
 	}
+	public void changeDirectionOther(GameObject other, Side collisionSide, String[] args){
+		this.setCollisionSide(other, collisionSide, "changeDirectionOther");
+		other.changeDirection(args[1]);
+	}
 }

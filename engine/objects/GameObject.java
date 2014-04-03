@@ -166,4 +166,9 @@ public abstract class GameObject {
 		// TODO Auto-generated method stub
 		
 	}
+
+	public void changeDirection(String string) {
+		// TODO Auto-generated method stub
+		
+	}
 }
