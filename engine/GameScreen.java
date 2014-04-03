@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import engine.defaultObjects.DefaultPlatformerInputHandler;
+import engine.defaultObjects.EventInputHandler;
 import engine.objects.GameMap;
 
 public class GameScreen implements Screen {
@@ -17,7 +18,7 @@ public class GameScreen implements Screen {
 	SpriteBatch batch;
 	OrthographicCamera camera;
 	float width, height;
-	DefaultPlatformerInputHandler inputHandler;
+	EventInputHandler inputHandler;
 	
 	public GameScreen(Game g, GameMap map) {
 		game = g;
@@ -81,7 +82,7 @@ public class GameScreen implements Screen {
 		camera = new OrthographicCamera(width, height);
 		camera.position.set(width / 2, height / 2, 0);
 		
-		inputHandler = new DefaultPlatformerInputHandler(map.player);
+		inputHandler = new EventInputHandler(map);
 		Gdx.input.setInputProcessor(inputHandler);
 		
 		// parse and instantiate map

@@ -13,7 +13,6 @@ public abstract class MovableObject extends GameObject {
 	boolean facingRight;
 	public float moveSpeed;
 	protected String filename;
-	protected HashMap<String, InputEvent> inputEvents;
 	List<Side> collisionSides;
 	private boolean jumping;
 	
@@ -24,12 +23,11 @@ public abstract class MovableObject extends GameObject {
 		gravity = input.gravity; 
 		moveSpeed = input.moveSpeed;
 		facingRight = input.facingRight; 
-		inputEvents = new HashMap<String, InputEvent>();
 		if(input.controls != null){
 			for (Map.Entry<String, String> entry : input.controls.entrySet()) {
 			    String key = entry.getKey();
 			    String value = entry.getValue();
-			    inputEvents.put(key, new InputEvent(this, value));
+			    map.inputEvents.put(key, new InputEvent(this, value));
 			}
 		}
 		collisionSides = new ArrayList<Side>();
@@ -166,6 +164,23 @@ public abstract class MovableObject extends GameObject {
 			velocity.y = height; 
 			jumping = true;
 		}
-		//TODO: implement
+	}
+	public void moveLeft(float distance){
+		this.velocity.x -= distance;
+	}
+	public void moveRight(float distance){
+		this.velocity.x += distance;
+	}
+	public void moveUp(float distance){
+		this.velocity.y += distance;
+	}
+	public void moveDown(float distance){
+		this.velocity.y -= distance;
+	}
+	public void stopMoveY(){
+		this.velocity.y = 0;
+	}
+	public void stopMoveX(){
+		this.velocity.x = 0;
 	}
 }

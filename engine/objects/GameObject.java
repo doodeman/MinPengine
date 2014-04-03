@@ -136,4 +136,34 @@ public abstract class GameObject {
 		// TODO Auto-generated method stub
 		
 	}
+
+	public void moveRight(float distance) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void moveLeft(float distance) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void moveUp(float distance) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void moveDown(float distance) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void stopMoveY() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void stopMoveX() {
+		// TODO Auto-generated method stub
+		
+	}
 }

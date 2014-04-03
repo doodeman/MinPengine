@@ -5,6 +5,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
 
@@ -27,9 +28,12 @@ public class GameMap implements Comparable<GameMap>{
 	private String gameName;
 	public Color color;
 	public Game game;
+	public ArrayList<String> keys;	
+	public HashMap<String, InputEvent> inputEvents = new HashMap<String, InputEvent>();;
 	
 
 	public GameMap(String mapName, String gameName) throws IOException {
+		this.keys = new ArrayList<String>();
 		this.mapName = mapName;
 		this.gameName = gameName;
 		texturesToLoad = new ArrayList<String>(); 
@@ -42,6 +46,13 @@ public class GameMap implements Comparable<GameMap>{
 	}
 	
 	public void update(float delta) {
+		if(keys.size() > 0){
+			for(String key : keys){
+				InputEvent ev = inputEvents.get(key);
+				if(ev != null) ev.resolve();
+			}
+		}
+		keys.clear();
 		checkForCollisions(delta);
 		for (GameObject o : gameObjects) {
 			o.update(delta);
@@ -187,5 +198,9 @@ public class GameMap implements Comparable<GameMap>{
 	 */
 	public void disposeTextures() {
 		AssetManager.disposeTextures(this.texturesToLoad);
+	}
+
+	public void addKey(String key) {
+		keys.add(key);
 	}
 }
